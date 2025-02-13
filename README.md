@@ -9,37 +9,98 @@
 - Download artifacts from your latest successful builds
 - Simple workflow-based artifact retrieval
 - Easy integration with CI/CD pipelines
-- Zero configuration needed
+- Supports both CLI arguments and environment variables
 
 ## 🚀 Quick Start
 
-### Download Command
-
-Downloads artifacts from the latest successful build of a specified workflow.
+### Download Artifacts
 
 ```bash
-# Download artifacts from a specific workflow
+# Using npx (recommended)
 npx bitrise-api-cli@latest download --token <BITRISE_TOKEN> --workflow <WORKFLOW_NAME>
+
+# If running locally, you'll need to specify the app slug
+npx bitrise-api-cli@latest download \
+  --token <BITRISE_TOKEN> \
+  --workflow <WORKFLOW_NAME> \
+  --app-slug <APP_SLUG>
 ```
 
-## 🔐 Environment Variables
+## 🔐 Configuration
 
-You can set the following environment variables instead of passing command-line arguments:
+### Environment Variables
 
-- `BITRISE_API_CLI_TOKEN`: Your Bitrise API token
-- `BITRISE_API_CLI_WORKFLOW`: workflow name
-- `BITRISE_APP_SLUG`: App Slug (already set in Bitrise CI, must be set if running locally)
+| Variable                   | Description                              | Required     |
+| -------------------------- | ---------------------------------------- |--------------|
+| `BITRISE_API_CLI_TOKEN`    | Your Bitrise API token                   | Yes          |
+| `BITRISE_API_CLI_WORKFLOW` | Workflow name to download artifacts from | Yes          |
+| `BITRISE_APP_SLUG`         | App Slug (auto-set in Bitrise CI)        | only locally |
+
+### CLI Options
+
+```bash
+Options:
+  -t, --token <TOKEN>        Bitrise API token
+  -w, --workflow <NAME>      Workflow name
+  -s, --app-slug <SLUG>      Bitrise app slug
+  -d, --debug               Enable debug logging
+  -h, --help                Display help information
+```
 
 ## 💡 Examples
 
-```bash
-# Using command line arguments
-npx bitrise-api-cli@latest download --token abc123 --workflow android-release
+### Using Command Line Arguments
 
-# Using environment variables
+```bash
+# Download artifacts from a specific workflow
+npx bitrise-api-cli@latest download \
+  --token abc123 \
+  --workflow android-release \
+  --app-slug a1b2c3d4e5f6
+
+# Enable debug logging
+npx bitrise-api-cli@latest download --debug \
+  --token abc123 \
+  --workflow android-release
+```
+
+### Using Environment Variables
+
+```bash
+# Set environment variables
 export BITRISE_API_CLI_TOKEN=abc123
 export BITRISE_API_CLI_WORKFLOW=android-release
+export BITRISE_APP_SLUG=a1b2c3d4e5f6
+
+# Run the command
 npx bitrise-api-cli@latest download
+```
+
+## 🔍 Common Use Cases
+
+### CI/CD Integration
+
+Perfect for downloading artifacts from previous builds instead of rebuilding from source:
+
+```yaml
+steps:
+  - script:
+      inputs:
+        content: |
+          npx bitrise-api-cli@latest download \
+            --workflow android-release \
+            --token $BITRISE_API_TOKEN
+```
+
+### Local Development
+
+Download the latest artifacts to test without building:
+
+```bash
+npx bitrise-api-cli@latest download \
+  --token $BITRISE_API_TOKEN \
+  --workflow android-release \
+  --app-slug $BITRISE_APP_SLUG
 ```
 
 ## 📝 License
@@ -50,3 +111,9 @@ This project is [MIT](LICENSE) licensed.
 
 - Thanks to [Bitrise](https://www.bitrise.io/) for their excellent API
 - Built with ❤️ for the mobile CI/CD community
+
+---
+
+<div align="center">
+<p>Found this project useful? Give it a ⭐️!</p>
+</div>
