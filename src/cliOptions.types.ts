@@ -1,5 +1,6 @@
 export type CliOptions = {
     debug: boolean;
-    token: string;
+    token?: string;
     workflow?: string;
+    appSlug?: string;
 };
