@@ -87,7 +87,7 @@ steps:
   - script:
       inputs:
         content: |
-          npx bitrise-api-cli@latest download \
+          npx bitrise-api-cli download \
             --workflow android-release \
             --token $BITRISE_API_TOKEN
 ```

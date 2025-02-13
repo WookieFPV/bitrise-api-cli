@@ -7,7 +7,7 @@ export const ENV = {
 };
 
 export const saveOptions = (options: CliOptions) => {
-    ENV.appSlug = options?.appSlug ?? process.env.BITRISE_APP_SLUG ?? "";
+    ENV.appSlug = options?.app ?? process.env.BITRISE_APP_SLUG ?? "";
     ENV.token = options?.token ?? process.env.BITRISE_API_CLI_TOKEN ?? "";
     ENV.workflow = options?.workflow ?? process.env.BITRISE_API_CLI_WORKFLOW ?? "";
 };
