@@ -1,0 +1,35 @@
+{
+  "name": "bitrise-api-cli",
+  "version": "0.0.1",
+  "description": "bitrise api CLI wrapper",
+  "module": "index",
+  "type": "module",
+  "bin": {
+    "bitrise-api-cli": "./dist/bin.js"
+  },
+  "keywords": ["bitrise", "bitriseio"],
+  "license": "MIT",
+  "main": "dist/bin.js",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "build:dev": "tsup --watch",
+    "lint": "bunx biome check --fix",
+    "lint:CI": "bunx biome check",
+    "typecheck": "tsc",
+    "api:update": "curl -f \"https://api-docs.bitrise.io/docs/swagger.json\" -o \"src/bitrise/openapi.json\"",
+    "api:codegen": "openapi-generator-cli generate -g typescript-fetch --additional-properties=useSingleRequestParameter=true -o ./src/generated_api -i src/bitrise/openapi.json && npm run lint",
+    "prepublishOnly": "bun i && bun run lint:CI && tsc  && bun run build"
+  },
+  "dependencies": {
+    "commander": "13.1.0",
+    "ora": "8.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@openapitools/openapi-generator-cli": "2.16.3",
+    "@types/bun": "latest",
+    "tsup": "8.3.5",
+    "typescript": "5.7.3"
+  }
+}
