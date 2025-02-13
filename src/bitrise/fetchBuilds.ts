@@ -4,7 +4,7 @@ import type { CliOptions } from "@/cliOptions.types";
 import { debugLog } from "@/helper/debugLog";
 
 export const getAllBuilds = async () => {
-    const { data } = await api.builds().buildList({ appSlug: ENV.appSlug });
+    const { data } = await api.builds().buildList({ appSlug: ENV.appSlug, status: 1 });
     if (!data) throw Error("no build data");
     return data;
 };

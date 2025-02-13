@@ -2,13 +2,11 @@ import { fetchArtifact } from "@/bitrise/fetchArtifact";
 import { formatBytes } from "@/helper/formatBytes";
 import { oraPromise } from "ora";
 import { isEnvValid, saveOptions } from "./bitrise/env";
-import { fetchArtifactList } from "./bitrise/fetchArtifactList";
+import { fetchArtifactByType } from "./bitrise/fetchArtifactList";
 import { getLatestBuild } from "./bitrise/fetchBuilds";
 import type { CliOptions } from "./cliOptions.types";
 import { debugLog } from "./helper/debugLog";
 import { downloadFile } from "./helper/downloadFile";
-
-const targetArtifactType = "android-apk";
 
 export const downloadLatestArtifacts = async (options: CliOptions) => {
     saveOptions(options);
@@ -23,12 +21,12 @@ export const downloadLatestArtifacts = async (options: CliOptions) => {
         console.log("Latest build contained no Slug");
         return process.exit(1);
     }
-    const artifactInfo = await oraPromise(fetchArtifactList(latestBuild.slug), { text: "fetching artifact list" });
-
-    const artifactMetadata = artifactInfo.find((artifact) => artifact.artifactType === targetArtifactType);
-    if (!artifactMetadata || !artifactMetadata.slug)
-        throw new Error(`Found no apk in build #${latestBuild.buildNumber}`);
+    const artifactMetadata = await oraPromise(fetchArtifactByType(latestBuild.slug), {
+        text: "fetching artifact list",
+        failText: (error) => `fetching artifact list failed with error: ${error}`,
+    });
     if (options.debug) debugLog("artifactMetadata", artifactMetadata);
+    if (!artifactMetadata || !artifactMetadata.slug) return process.exit(1);
 
     const artifact = await oraPromise(
         fetchArtifact({

@@ -23,7 +23,7 @@ npx bitrise-api-cli@latest download --token <BITRISE_TOKEN> --workflow <WORKFLOW
 npx bitrise-api-cli@latest download \
   --token <BITRISE_TOKEN> \
   --workflow <WORKFLOW_NAME> \
-  --app-slug <APP_SLUG>
+  --slug <APP_SLUG>
 ```
 
 ## 🔐 Configuration
@@ -40,11 +40,12 @@ npx bitrise-api-cli@latest download \
 
 ```bash
 Options:
-  -t, --token <TOKEN>        Bitrise API token
-  -w, --workflow <NAME>      Workflow name
-  -s, --app-slug <SLUG>      Bitrise app slug
-  -d, --debug               Enable debug logging
-  -h, --help                Display help information
+  -t, --token <TOKEN>             bitrise api token (or $BITRISE_API_CLI_TOKEN)
+  -w, --workflow <WORKFLOW_NAME>  workflow to get apk from (or $BITRISE_API_CLI_WORKFLOW)
+  -s, --slug <APP_SLUG>           bitrise app slug (or $BITRISE_APP_SLUG) see bitrise project url to get slug
+  -a, --artifact <ARTIFACT_TYPE>  bitrise artifact type "ios-ipa" or "android-apk"
+  -d, --debug                     output extra debugging (default: false)
+  -h, --help                      display help for command
 ```
 
 ## 💡 Examples
@@ -56,7 +57,7 @@ Options:
 npx bitrise-api-cli@latest download \
   --token abc123 \
   --workflow android-release \
-  --app-slug a1b2c3d4e5f6
+  --slug a1b2c3d4e5f6
 
 # Enable debug logging
 npx bitrise-api-cli@latest download --debug \
@@ -100,7 +101,7 @@ Download the latest artifacts to test without building:
 npx bitrise-api-cli@latest download \
   --token $BITRISE_API_TOKEN \
   --workflow android-release \
-  --app-slug $BITRISE_APP_SLUG
+  --slug $BITRISE_APP_SLUG
 ```
 
 ## 📝 License

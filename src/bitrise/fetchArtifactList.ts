@@ -6,3 +6,11 @@ export const fetchArtifactList = async (buildSlug: string) => {
     if (!data) throw new Error("buildArtifact().artifactList returned no data");
     return data;
 };
+
+export const fetchArtifactByType = async (buildSlug: string) => {
+    const artifactInfo = await fetchArtifactList(buildSlug);
+    const artifactMetadata = artifactInfo.find((artifact) => artifact.artifactType === ENV.artifactType);
+    if (!artifactMetadata || !artifactMetadata.slug)
+        throw new Error(`Found no ${ENV.artifactType} in build Slug: ${buildSlug}`);
+    return artifactMetadata;
+};
