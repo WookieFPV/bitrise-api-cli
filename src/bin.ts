@@ -5,7 +5,7 @@ import { downloadLatestArtifacts } from "./downloadLatestArtifacts";
 
 const program = new Command();
 
-//program.version(__VERSION__);
+program.version(__VERSION__);
 
 program
     .command("download")
