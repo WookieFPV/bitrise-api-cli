@@ -1,6 +1,3 @@
-//version is injected by tsup when bundling
-declare const __VERSION__: string;
-
 declare namespace NodeJS {
     interface ProcessEnv {
         BITRISE_APP_SLUG: string | undefined;

@@ -1,18 +1,18 @@
+import { isEnvValid, saveOptions } from "@/bitrise/env";
 import { fetchArtifact } from "@/bitrise/fetchArtifact";
+import { fetchArtifactByType } from "@/bitrise/fetchArtifactList";
+import { getLatestBuild } from "@/bitrise/fetchBuilds";
 import { formatBytes } from "@/helper/formatBytes";
-import { ADB } from "appium-adb";
 import { oraPromise } from "ora";
-import { isEnvValid, saveOptions } from "./bitrise/env";
-import { fetchArtifactByType } from "./bitrise/fetchArtifactList";
-import { getLatestBuild } from "./bitrise/fetchBuilds";
-import type { CliOptions } from "./cliOptions.types";
-import { downloadFile } from "./helper/downloadFile";
 
-export const downloadLatestArtifacts = async (options: CliOptions) => {
+import type { CommandFlags } from "@/cli/impl";
+import { downloadFile } from "@/helper/downloadFile";
+
+export const downloadLatestArtifacts = async (options: CommandFlags) => {
     saveOptions(options);
     if (!isEnvValid()) return process.exit(1);
 
-    const latestBuild = await oraPromise(getLatestBuild(options), {
+    const latestBuild = await oraPromise(getLatestBuild(), {
         text: "fetching latest build",
         failText: (error) => `fetching latest build failed with error: ${error}`,
     });
@@ -33,6 +33,6 @@ export const downloadLatestArtifacts = async (options: CliOptions) => {
     const fileSize = formatBytes(artifact.fileSizeBytes ?? 0);
     await oraPromise(downloadFile(artifact.expiringDownloadUrl, artifactMetadata.title), {
         text: `downloading apk file (${fileSize})`,
-        successText: ({ duration }) => `downloading apk file took ${duration}ms`,
+        successText: ({ duration }) => `downloading apk file took ${duration}`,
     });
 };
