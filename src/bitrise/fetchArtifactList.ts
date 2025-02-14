@@ -1,4 +1,5 @@
 import { api } from "@/bitrise/api";
+import { debugLog } from "@/helper/debugLog";
 import { ENV } from "./env";
 
 export const fetchArtifactList = async (buildSlug: string) => {
@@ -12,5 +13,6 @@ export const fetchArtifactByType = async (buildSlug: string) => {
     const artifactMetadata = artifactInfo.find((artifact) => artifact.artifactType === ENV.artifactType);
     if (!artifactMetadata || !artifactMetadata.slug)
         throw new Error(`Found no ${ENV.artifactType} in build Slug: ${buildSlug}`);
+    if (ENV.debug) debugLog("artifactMetadata", artifactMetadata);
     return artifactMetadata;
 };

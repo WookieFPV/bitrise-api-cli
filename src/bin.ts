@@ -23,6 +23,11 @@ program
     .option("-a, --artifact <ARTIFACT_TYPE>", 'bitrise artifact type "ios-ipa" or "android-apk"', "android-apk")
     .option("-d, --debug", "output extra debugging", false)
     .description("Download bitrise artifacts")
-    .action((options: CliOptions) => downloadLatestArtifacts(options).catch(() => process.exit(1)));
+    .action((options: CliOptions) =>
+        downloadLatestArtifacts(options).catch((err) => {
+            if (err instanceof Error) console.log("Error:", err.message);
+            process.exit(1);
+        }),
+    );
 
 program.parse(process.argv);

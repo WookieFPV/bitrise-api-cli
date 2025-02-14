@@ -1,6 +1,7 @@
 import { type CliOptions, type ValidArtifactTypes, validArtifactTypes } from "@/cliOptions.types";
 
 export const ENV = {
+    debug: false,
     appSlug: "",
     token: "",
     workflow: "",
@@ -8,6 +9,7 @@ export const ENV = {
 };
 
 export const saveOptions = (options: CliOptions) => {
+    ENV.debug = options.debug;
     ENV.appSlug = options.slug;
     ENV.token = options.token;
     ENV.workflow = options.workflow;

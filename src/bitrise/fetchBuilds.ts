@@ -16,6 +16,6 @@ export const getLatestBuild = async (options: CliOptions) => {
 
     if (!latestBuild) throw `Found no build with the workflow: "${ENV.workflow}"`;
 
-    if (options.debug) debugLog("latestBuild", latestBuild);
+    if (ENV.debug) debugLog("latestBuild", latestBuild);
     return latestBuild;
 };

@@ -4,7 +4,8 @@ import { get } from "node:https";
 import { pipeline } from "node:stream/promises";
 import { URL } from "node:url";
 
-export const downloadFile = async (fileUrl: string, outputLocationPath: string): Promise<void> => {
+export const downloadFile = async (fileUrl: string, outputLocationPath: string) => {
+    const startTime = Date.now();
     const url = new URL(fileUrl);
     const response = await new Promise<IncomingMessage>((resolve, reject) => {
         get(url, (res) => {
@@ -16,4 +17,5 @@ export const downloadFile = async (fileUrl: string, outputLocationPath: string):
         }).on("error", reject);
     });
     await pipeline(response, createWriteStream(outputLocationPath));
+    return { duration: Date.now() - startTime };
 };
