@@ -1,4 +1,4 @@
-# Bitrise API CLI [![npm version](https://badge.fury.io/js/bitrise-api-cli.svg)](https://www.npmjs.com/package/bitrise-api-cli)
+# Bitrise API CLI [![npm][npm-image]][npm-url] ![npm][npm-dl-stats]
 
 <div align="center">
 🚀 An unofficial CLI tool to interact with Bitrise API, making artifact downloads a breeze.
@@ -118,3 +118,8 @@ This project is [MIT](LICENSE) licensed.
 <div align="center">
 <p>Found this project useful? Give it a ⭐️!</p>
 </div>
+
+
+[npm-image]: https://img.shields.io/npm/v/bitrise-api-cli
+[npm-url]: https://www.npmjs.com/package/bitrise-api-cli
+[npm-dl-stats]: https://img.shields.io/npm/dm/bitrise-api-cli

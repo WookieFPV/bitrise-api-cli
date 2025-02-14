@@ -1,13 +1,16 @@
-import { type CliOptions, type ValidArtifactTypes, validArtifactTypes } from "@/cliOptions.types";
+import type { CommandFlags } from "@/cli/impl";
+import { type ValidArtifactTypes, validArtifactTypes } from "@/cliOptions.types";
 
 export const ENV = {
+    debug: false,
     appSlug: "",
     token: "",
     workflow: "",
     artifactType: "android-apk" as ValidArtifactTypes,
 };
 
-export const saveOptions = (options: CliOptions) => {
+export const saveOptions = (options: CommandFlags) => {
+    ENV.debug = options.debug;
     ENV.appSlug = options.slug;
     ENV.token = options.token;
     ENV.workflow = options.workflow;

@@ -1,19 +1,20 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "bitrise api CLI wrapper",
   "module": "index",
   "type": "module",
   "bin": {
-    "bitrise-api-cli": "./dist/bin.js"
+    "bitrise-api-cli": "./dist/cli.js",
+    "__bitrise-api-cli_bash_complete": "dist/bash-complete.js"
   },
-  "keywords": ["bitrise", "bitriseio"],
+  "keywords": ["bitrise", "bitriseio", "apk", "downloader"],
   "license": "MIT",
-  "main": "dist/bin.js",
+  "main": "dist/cli.js",
   "files": ["dist"],
   "scripts": {
     "build": "tsup",
-    "build:dev": "tsup --watch",
+    "build:dev": "tsup --watch --clean false",
     "lint": "bunx biome check --fix",
     "lint:CI": "bunx biome check",
     "typecheck": "tsc",
@@ -22,14 +23,15 @@
     "prepublishOnly": "bun i && bun run lint:CI && tsc  && bun run build"
   },
   "dependencies": {
-    "commander": "13.1.0",
+    "@stricli/core": "1.1.1",
+    "@stricli/auto-complete": "1.1.1",
     "ora": "8.2.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@openapitools/openapi-generator-cli": "2.16.3",
     "@types/bun": "latest",
-    "tsup": "8.3.5",
+    "tsup": "8.3.6",
     "typescript": "5.7.3"
   }
 }
