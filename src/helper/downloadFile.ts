@@ -19,5 +19,5 @@ export const downloadFile = async (fileUrl: string, outputLocationPath: string) 
     });
     await pipeline(response, createWriteStream(outputLocationPath));
 
-    return { duration: formatTime(Date.now() - startTime) };
+    return { file: outputLocationPath, duration: formatTime(Date.now() - startTime) };
 };

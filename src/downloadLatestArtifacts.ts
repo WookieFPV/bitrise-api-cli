@@ -5,7 +5,7 @@ import { getLatestBuild } from "@/bitrise/fetchBuilds";
 import { formatBytes } from "@/helper/formatBytes";
 import { oraPromise } from "ora";
 
-import type { CommandFlags } from "@/cli/impl";
+import type { CommandFlags } from "@/cli/commands/download/impl";
 import { downloadFile } from "@/helper/downloadFile";
 
 export const downloadLatestArtifacts = async (options: CommandFlags) => {
@@ -31,8 +31,9 @@ export const downloadLatestArtifacts = async (options: CommandFlags) => {
     if (!artifact.expiringDownloadUrl) throw Error("Artifact is missing expiringDownloadUrl");
 
     const fileSize = formatBytes(artifact.fileSizeBytes ?? 0);
-    await oraPromise(downloadFile(artifact.expiringDownloadUrl, artifactMetadata.title), {
+    const { file } = await oraPromise(downloadFile(artifact.expiringDownloadUrl, artifactMetadata.title), {
         text: `downloading apk file (${fileSize})`,
         successText: ({ duration }) => `downloading apk file took ${duration}`,
     });
+    return file;
 };

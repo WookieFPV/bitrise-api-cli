@@ -1,4 +1,4 @@
-import type { CommandFlags } from "@/cli/impl";
+import type { CommandFlags } from "@/cli/commands/download/impl";
 import { type ValidArtifactTypes, validArtifactTypes } from "@/cliOptions.types";
 
 export const ENV = {
