@@ -1,4 +1,3 @@
-import { isEnvValid, saveOptions } from "@/bitrise/env";
 import { fetchArtifact } from "@/bitrise/fetchArtifact";
 import { fetchArtifactByType } from "@/bitrise/fetchArtifactList";
 import { getLatestBuild } from "@/bitrise/fetchBuilds";
@@ -7,33 +6,24 @@ import { oraPromise } from "ora";
 
 import type { CommandFlags } from "@/cli/commands/download/impl";
 import { downloadFile } from "@/helper/downloadFile";
+import { getOraTexts } from "@/helper/oraHelper";
 
 export const downloadLatestArtifacts = async (options: CommandFlags) => {
-    saveOptions(options);
-    if (!isEnvValid()) return process.exit(1);
+    const latestBuild = await oraPromise(getLatestBuild(), getOraTexts("fetching latest build"));
 
-    const latestBuild = await oraPromise(getLatestBuild(), {
-        text: "fetching latest build",
-        failText: (error) => `fetching latest build failed with error: ${error}`,
-    });
-    if (!latestBuild.slug) throw Error("Latest build contained no Slug");
-
-    const artifactMetadata = await oraPromise(fetchArtifactByType(latestBuild.slug), {
-        text: "fetching artifact list",
-        failText: (error) => `fetching artifact list failed with error: ${error}`,
-    });
-    if (!artifactMetadata.slug || !artifactMetadata.title) throw Error("Artifact was Invalid");
+    const artifactMetadata = await oraPromise(
+        fetchArtifactByType(latestBuild.slug),
+        getOraTexts("fetching artifact list"),
+    );
 
     const artifact = await oraPromise(
         fetchArtifact({ artifactSlug: artifactMetadata.slug, buildSlug: latestBuild.slug }),
-        { text: "fetching artifact metadata" },
+        getOraTexts("fetching artifact metadata"),
     );
-    if (!artifact.expiringDownloadUrl) throw Error("Artifact is missing expiringDownloadUrl");
 
-    const fileSize = formatBytes(artifact.fileSizeBytes ?? 0);
     const { file } = await oraPromise(downloadFile(artifact.expiringDownloadUrl, artifactMetadata.title), {
-        text: `downloading apk file (${fileSize})`,
-        successText: ({ duration }) => `downloading apk file took ${duration}`,
+        ...getOraTexts("downloading apk file"),
+        text: `downloading apk file [${formatBytes(artifact.fileSizeBytes ?? 0)}]`,
     });
     return file;
 };

@@ -15,18 +15,43 @@
 
 import * as runtime from '../runtime';
 import type {
+  ServiceProxyErrorRespModel,
   ServiceStandardErrorRespModel,
   V0AppleAPICredentialsListResponse,
+  V0OrganizationAppleAPICredentialsListResponse,
+  V0OrganizationAppleAPICredetialCreateParams,
+  V0OrganizationAppleAPICredetialCreateResponse,
 } from '../models/index';
 import {
+    ServiceProxyErrorRespModelFromJSON,
+    ServiceProxyErrorRespModelToJSON,
     ServiceStandardErrorRespModelFromJSON,
     ServiceStandardErrorRespModelToJSON,
     V0AppleAPICredentialsListResponseFromJSON,
     V0AppleAPICredentialsListResponseToJSON,
+    V0OrganizationAppleAPICredentialsListResponseFromJSON,
+    V0OrganizationAppleAPICredentialsListResponseToJSON,
+    V0OrganizationAppleAPICredetialCreateParamsFromJSON,
+    V0OrganizationAppleAPICredetialCreateParamsToJSON,
+    V0OrganizationAppleAPICredetialCreateResponseFromJSON,
+    V0OrganizationAppleAPICredetialCreateResponseToJSON,
 } from '../models/index';
 
 export interface AppleApiCredentialListRequest {
     userSlug: string;
+}
+
+export interface OrganizationsCreateAppleApiCredentialsRequest {
+    orgSlug: string;
+    types: V0OrganizationAppleAPICredetialCreateParams;
+}
+
+export interface OrganizationsDeleteAppleApiCredentialsRequest {
+    orgSlug: string;
+}
+
+export interface OrganizationsListAppleApiCredentialsRequest {
+    orgSlug: string;
 }
 
 /**
@@ -70,6 +95,132 @@ export class AppleApiCredentialsApi extends runtime.BaseAPI {
      */
     async appleApiCredentialList(requestParameters: AppleApiCredentialListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0AppleAPICredentialsListResponse> {
         const response = await this.appleApiCredentialListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates a new Apple API Credential with the given data.
+     * Create Apple API Credential
+     */
+    async organizationsCreateAppleApiCredentialsRaw(requestParameters: OrganizationsCreateAppleApiCredentialsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0OrganizationAppleAPICredetialCreateResponse>> {
+        if (requestParameters['orgSlug'] == null) {
+            throw new runtime.RequiredError(
+                'orgSlug',
+                'Required parameter "orgSlug" was null or undefined when calling organizationsCreateAppleApiCredentials().'
+            );
+        }
+
+        if (requestParameters['types'] == null) {
+            throw new runtime.RequiredError(
+                'types',
+                'Required parameter "types" was null or undefined when calling organizationsCreateAppleApiCredentials().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // PersonalAccessToken authentication
+        }
+
+        const response = await this.request({
+            path: `/organizations/{org-slug}/apple-api-credentials`.replace(`{${"org-slug"}}`, encodeURIComponent(String(requestParameters['orgSlug']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: V0OrganizationAppleAPICredetialCreateParamsToJSON(requestParameters['types']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0OrganizationAppleAPICredetialCreateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a new Apple API Credential with the given data.
+     * Create Apple API Credential
+     */
+    async organizationsCreateAppleApiCredentials(requestParameters: OrganizationsCreateAppleApiCredentialsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0OrganizationAppleAPICredetialCreateResponse> {
+        const response = await this.organizationsCreateAppleApiCredentialsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Removes the Apple API Credential with the identifier.
+     * Delete Apple API Credential
+     */
+    async organizationsDeleteAppleApiCredentialsRaw(requestParameters: OrganizationsDeleteAppleApiCredentialsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['orgSlug'] == null) {
+            throw new runtime.RequiredError(
+                'orgSlug',
+                'Required parameter "orgSlug" was null or undefined when calling organizationsDeleteAppleApiCredentials().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // PersonalAccessToken authentication
+        }
+
+        const response = await this.request({
+            path: `/organizations/{org-slug}/apple-api-credentials`.replace(`{${"org-slug"}}`, encodeURIComponent(String(requestParameters['orgSlug']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes the Apple API Credential with the identifier.
+     * Delete Apple API Credential
+     */
+    async organizationsDeleteAppleApiCredentials(requestParameters: OrganizationsDeleteAppleApiCredentialsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.organizationsDeleteAppleApiCredentialsRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * List Apple API credentials for a specific Bitrise Workspace
+     * List Apple API credentials for a specific organization
+     */
+    async organizationsListAppleApiCredentialsRaw(requestParameters: OrganizationsListAppleApiCredentialsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0OrganizationAppleAPICredentialsListResponse>> {
+        if (requestParameters['orgSlug'] == null) {
+            throw new runtime.RequiredError(
+                'orgSlug',
+                'Required parameter "orgSlug" was null or undefined when calling organizationsListAppleApiCredentials().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // PersonalAccessToken authentication
+        }
+
+        const response = await this.request({
+            path: `/organizations/{org-slug}/apple-api-credentials`.replace(`{${"org-slug"}}`, encodeURIComponent(String(requestParameters['orgSlug']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0OrganizationAppleAPICredentialsListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * List Apple API credentials for a specific Bitrise Workspace
+     * List Apple API credentials for a specific organization
+     */
+    async organizationsListAppleApiCredentials(requestParameters: OrganizationsListAppleApiCredentialsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0OrganizationAppleAPICredentialsListResponse> {
+        const response = await this.organizationsListAppleApiCredentialsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

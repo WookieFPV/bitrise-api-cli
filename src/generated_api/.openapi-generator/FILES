@@ -9,6 +9,7 @@ apis/BuildCertificateApi.ts
 apis/BuildRequestApi.ts
 apis/BuildsApi.ts
 apis/GenericProjectFileApi.ts
+apis/GoogleServiceCredentialsApi.ts
 apis/GroupsApi.ts
 apis/KeyValueCacheApi.ts
 apis/OrganizationsApi.ts
@@ -118,7 +119,17 @@ models/V0CacheItemDownloadURLResponseModel.ts
 models/V0CacheItemListResponseItemModel.ts
 models/V0CacheItemListResponseModel.ts
 models/V0CommitPaths.ts
+models/V0OrganizationAppleAPICredentialResponseItem.ts
+models/V0OrganizationAppleAPICredentialsListResponse.ts
+models/V0OrganizationAppleAPICredetialCreateParams.ts
+models/V0OrganizationAppleAPICredetialCreateResponse.ts
+models/V0OrganizationAppleAPICredetialCreateResponseItem.ts
 models/V0OrganizationDataModel.ts
+models/V0OrganizationGoogleServiceCredentialResponseItem.ts
+models/V0OrganizationGoogleServiceCredentialsListResponse.ts
+models/V0OrganizationGoogleServiceCredetialCreateParams.ts
+models/V0OrganizationGoogleServiceCredetialCreateResponse.ts
+models/V0OrganizationGoogleServiceCredetialCreateResponseItem.ts
 models/V0OrganizationListRespModel.ts
 models/V0OrganizationOwner.ts
 models/V0OrganizationRespModel.ts

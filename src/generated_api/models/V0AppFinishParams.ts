@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface V0AppFinishParams {
     /**
-     * Which config to use. Specify a config that matches your project type (e. g. `default-android-config` for `android`, etc.). If not speficied, default value is `other-config`. The available values are `default-android-config`, `default-cordova-config`, `default-fastlane-android-config`, `default-fastlane-ios-config`, `flutter-config-notest-app-android`, `flutter-config-notest-app-both`, `flutter-config-notest-app-ios`, `flutter-config-test-app-android`, `flutter-config-test-app-both`, `flutter-config-test-app-ios`, `default-ionic-config`, `default-ios-config`, `default-macos-config`, `default-react-native-config`, `default-react-native-expo-config`, `other-config`.
+     * Which config to use. Specify a config that matches your project type (e. g. `default-android-config` for `android`, etc.). If not speficied, default value is `other-config`. The available values are `default-android-config`, `default-cordova-config`, `default-fastlane-android-config`, `default-fastlane-ios-config`, `flutter-config-test-android-2`, `flutter-config-test-both-0`, `flutter-config-test-ios-1`, `default-ionic-config`, `default-ios-config`, `default-macos-config`, `default-react-native-config`, `default-react-native-expo-config`, `other-config`.
      * @type {string}
      * @memberof V0AppFinishParams
      */
@@ -44,7 +44,7 @@ export interface V0AppFinishParams {
      */
     organizationSlug?: string;
     /**
-     * The type of your project (`android`, `ios`, `cordova`, `other`, `xamarin`, `macos`, `ionic`, `react-native`, `fastlane`, null)
+     * The type of your project (`android`, `ios`, `cordova`, `other`, `xamarin`, `macos`, `ionic`, `react-native`, `fastlane`, `flutter`, null)
      * @type {string}
      * @memberof V0AppFinishParams
      */

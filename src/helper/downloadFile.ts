@@ -3,7 +3,6 @@ import type { IncomingMessage } from "node:http";
 import { get } from "node:https";
 import { pipeline } from "node:stream/promises";
 import { URL } from "node:url";
-import { formatTime } from "@/helper/formatTime";
 
 export const downloadFile = async (fileUrl: string, outputLocationPath: string) => {
     const startTime = Date.now();
@@ -19,5 +18,5 @@ export const downloadFile = async (fileUrl: string, outputLocationPath: string) 
     });
     await pipeline(response, createWriteStream(outputLocationPath));
 
-    return { file: outputLocationPath, duration: formatTime(Date.now() - startTime) };
+    return { file: outputLocationPath, duration: Date.now() - startTime };
 };

@@ -1,3 +1,4 @@
+import { setupEnv } from "@/bitrise/env";
 import type { ValidArtifactTypes } from "@/cliOptions.types";
 import { installApp } from "@/device/install/run";
 import { downloadLatestArtifacts } from "@/downloadLatestArtifacts";
@@ -13,9 +14,10 @@ export interface CommandFlags {
 }
 
 export default async function (this: LocalContext, flags: CommandFlags): Promise<void> {
-    if (flags.debug) console.log(JSON.stringify(flags, null, 2));
+    if (!setupEnv(flags)) return process.exit(1);
+
     const file = await downloadLatestArtifacts(flags);
     if (flags.install) {
-        await installApp({ file, flags });
+        await installApp({ file, flags }).catch(() => {});
     }
 }

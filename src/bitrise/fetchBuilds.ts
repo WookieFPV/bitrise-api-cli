@@ -1,6 +1,7 @@
 import { api } from "@/bitrise/api";
 import { ENV } from "@/bitrise/env";
 import { debugLog } from "@/helper/debugLog";
+import { ensureMandatoryFields } from "@/helper/ensureMandatoryFields";
 
 export const getAllBuilds = async () => {
     const { data } = await api.builds().buildList({ appSlug: ENV.appSlug, status: 1 });
@@ -16,5 +17,6 @@ export const getLatestBuild = async () => {
     if (!latestBuild) throw `Found no build with the workflow: "${ENV.workflow}"`;
 
     if (ENV.debug) debugLog("latestBuild", latestBuild);
-    return latestBuild;
+
+    return ensureMandatoryFields(latestBuild, ["slug"]);
 };

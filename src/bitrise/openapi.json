@@ -5553,6 +5553,176 @@
         }
       }
     },
+    "/organizations/{org-slug}/apple-api-credentials": {
+      "get": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "List Apple API credentials for a specific Bitrise Workspace",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["apple-api-credentials"],
+        "summary": "List Apple API credentials for a specific organization",
+        "operationId": "organizations-list-apple-api-credentials",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Organization slug",
+            "name": "org-slug",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/v0.OrganizationAppleAPICredentialsListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "Creates a new Apple API Credential with the given data.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["apple-api-credentials"],
+        "summary": "Create Apple API Credential",
+        "operationId": "organizations-create-apple-api-credentials",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Organization slug",
+            "name": "org-slug",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "The Apple API credential information",
+            "name": "types",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v0.OrganizationAppleAPICredetialCreateParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/v0.OrganizationAppleAPICredetialCreateResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "Removes the Apple API Credential with the identifier.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["apple-api-credentials"],
+        "summary": "Delete Apple API Credential",
+        "operationId": "organizations-delete-apple-api-credentials",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Organization slug",
+            "name": "org-slug",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          }
+        }
+      }
+    },
     "/organizations/{org-slug}/apps": {
       "get": {
         "security": [
@@ -5701,6 +5871,176 @@
             "description": "Internal Server Error",
             "schema": {
               "$ref": "#/definitions/service.StandardErrorRespModel"
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{org-slug}/google-service-credentials": {
+      "get": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "List Google Service credentials for a specific Bitrise Workspace",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["google-service-credentials"],
+        "summary": "List Google Service credentials for a specific organization",
+        "operationId": "organizations-list-google-service-credentials",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Organization slug",
+            "name": "org-slug",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/v0.OrganizationGoogleServiceCredentialsListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "Creates a new Google Service Credential with the given data.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["google-service-credentials"],
+        "summary": "Create Google Service Credential",
+        "operationId": "organizations-create-google-service-credentials",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Organization slug",
+            "name": "org-slug",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "The Google Service credential information",
+            "name": "types",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v0.OrganizationGoogleServiceCredetialCreateParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/v0.OrganizationGoogleServiceCredetialCreateResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "Removes the Google Service Credential with the identifier.",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "tags": ["google-service-credentials"],
+        "summary": "Delete Google Service Credential",
+        "operationId": "organizations-delete-google-service-credentials",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Organization slug",
+            "name": "org-slug",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.ProxyErrorRespModel"
             }
           }
         }
@@ -7244,7 +7584,7 @@
       "required": ["project_type", "stack_id"],
       "properties": {
         "config": {
-          "description": "Which config to use. Specify a config that matches your project type (e. g. `default-android-config` for `android`, etc.). If not speficied, default value is `other-config`. The available values are `default-android-config`, `default-cordova-config`, `default-fastlane-android-config`, `default-fastlane-ios-config`, `flutter-config-notest-app-android`, `flutter-config-notest-app-both`, `flutter-config-notest-app-ios`, `flutter-config-test-app-android`, `flutter-config-test-app-both`, `flutter-config-test-app-ios`, `default-ionic-config`, `default-ios-config`, `default-macos-config`, `default-react-native-config`, `default-react-native-expo-config`, `other-config`.",
+          "description": "Which config to use. Specify a config that matches your project type (e. g. `default-android-config` for `android`, etc.). If not speficied, default value is `other-config`. The available values are `default-android-config`, `default-cordova-config`, `default-fastlane-android-config`, `default-fastlane-ios-config`, `flutter-config-test-android-2`, `flutter-config-test-both-0`, `flutter-config-test-ios-1`, `default-ionic-config`, `default-ios-config`, `default-macos-config`, `default-react-native-config`, `default-react-native-expo-config`, `other-config`.",
           "type": "string"
         },
         "envs": {
@@ -7263,7 +7603,7 @@
           "type": "string"
         },
         "project_type": {
-          "description": "The type of your project (`android`, `ios`, `cordova`, `other`, `xamarin`, `macos`, `ionic`, `react-native`, `fastlane`, null)",
+          "description": "The type of your project (`android`, `ios`, `cordova`, `other`, `xamarin`, `macos`, `ionic`, `react-native`, `fastlane`, `flutter`, null)",
           "type": "string"
         },
         "stack_id": {
@@ -8543,6 +8883,94 @@
         }
       }
     },
+    "v0.OrganizationAppleAPICredentialResponseItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "is_enterprise_account": {
+          "type": "boolean"
+        },
+        "issuer_id": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "v0.OrganizationAppleAPICredentialsListResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v0.OrganizationAppleAPICredentialResponseItem"
+          }
+        }
+      }
+    },
+    "v0.OrganizationAppleAPICredetialCreateParams": {
+      "type": "object",
+      "properties": {
+        "is_enterprise_account": {
+          "type": "boolean"
+        },
+        "issuer_id": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "private_key": {
+          "type": "string"
+        }
+      }
+    },
+    "v0.OrganizationAppleAPICredetialCreateResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v0.OrganizationAppleAPICredetialCreateResponseItem"
+        }
+      }
+    },
+    "v0.OrganizationAppleAPICredetialCreateResponseItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "is_enterprise_account": {
+          "type": "boolean"
+        },
+        "issuer_id": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      }
+    },
     "v0.OrganizationDataModel": {
       "type": "object",
       "properties": {
@@ -8562,6 +8990,76 @@
           }
         },
         "slug": {
+          "type": "string"
+        }
+      }
+    },
+    "v0.OrganizationGoogleServiceCredentialResponseItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "is_enterprise_account": {
+          "type": "boolean"
+        },
+        "issuer_id": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "v0.OrganizationGoogleServiceCredentialsListResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v0.OrganizationGoogleServiceCredentialResponseItem"
+          }
+        }
+      }
+    },
+    "v0.OrganizationGoogleServiceCredetialCreateParams": {
+      "type": "object",
+      "properties": {
+        "credentials": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v0.OrganizationGoogleServiceCredetialCreateResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v0.OrganizationGoogleServiceCredetialCreateResponseItem"
+        }
+      }
+    },
+    "v0.OrganizationGoogleServiceCredetialCreateResponseItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
           "type": "string"
         }
       }

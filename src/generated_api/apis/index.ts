@@ -11,6 +11,7 @@ export * from './BuildCertificateApi';
 export * from './BuildRequestApi';
 export * from './BuildsApi';
 export * from './GenericProjectFileApi';
+export * from './GoogleServiceCredentialsApi';
 export * from './GroupsApi';
 export * from './KeyValueCacheApi';
 export * from './OrganizationsApi';

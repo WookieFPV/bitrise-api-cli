@@ -23,6 +23,9 @@ jobs:
     - name: Run lint
       run: bun run lint:CI
 
+    - name: Run test
+      run: bun test
+
     - name: Run build
       run: bun run build
 

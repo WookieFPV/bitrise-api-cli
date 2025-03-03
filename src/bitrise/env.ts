@@ -9,7 +9,7 @@ export const ENV = {
     artifactType: "android-apk" as ValidArtifactTypes,
 };
 
-export const saveOptions = (options: CommandFlags) => {
+const saveOptions = (options: CommandFlags) => {
     ENV.debug = options.debug;
     ENV.appSlug = options.slug;
     ENV.token = options.token;
@@ -17,7 +17,7 @@ export const saveOptions = (options: CommandFlags) => {
     ENV.artifactType = options.artifact;
 };
 
-export const isEnvValid = () => {
+const isEnvValid = () => {
     if (ENV.appSlug.length < 1) {
         console.log("No app slug provided! (see --help for more information)");
         return false;
@@ -35,4 +35,10 @@ export const isEnvValid = () => {
         return false;
     }
     return true;
+};
+
+export const setupEnv = (flags: CommandFlags): boolean => {
+    if (flags.debug) console.log(JSON.stringify(flags, null, 2));
+    saveOptions(flags);
+    return isEnvValid();
 };
