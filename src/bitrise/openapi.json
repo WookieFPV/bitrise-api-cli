@@ -774,6 +774,13 @@
             "name": "before",
             "in": "query",
             "required": true
+          },
+          {
+            "type": "integer",
+            "description": "Limit the number of listed builds (max: 1000, default: 1000)",
+            "name": "limit",
+            "in": "query",
+            "required": true
           }
         ],
         "responses": {
@@ -7293,6 +7300,9 @@
         "machine_type_id": {
           "type": "string"
         },
+        "priority": {
+          "type": "integer"
+        },
         "pull_request_author": {
           "type": "string"
         },
@@ -8688,6 +8698,9 @@
         "pipeline_id": {
           "type": "string"
         },
+        "priority": {
+          "type": "integer"
+        },
         "pull_request_author": {
           "type": "string"
         },
@@ -9281,6 +9294,9 @@
         "tag": {
           "type": "string"
         },
+        "trigger_params": {
+          "$ref": "#/definitions/v0.PipelineListAllTriggerParams"
+        },
         "triggered_at": {
           "type": "string"
         },
@@ -9303,6 +9319,14 @@
         },
         "paging": {
           "$ref": "#/definitions/v0.PagingResponseModel"
+        }
+      }
+    },
+    "v0.PipelineListAllTriggerParams": {
+      "type": "object",
+      "properties": {
+        "priority": {
+          "type": "integer"
         }
       }
     },

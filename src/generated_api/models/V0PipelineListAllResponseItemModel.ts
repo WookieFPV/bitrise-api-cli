@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { V0PipelineListAllTriggerParams } from './V0PipelineListAllTriggerParams';
+import {
+    V0PipelineListAllTriggerParamsFromJSON,
+    V0PipelineListAllTriggerParamsFromJSONTyped,
+    V0PipelineListAllTriggerParamsToJSON,
+    V0PipelineListAllTriggerParamsToJSONTyped,
+} from './V0PipelineListAllTriggerParams';
 import type { V0AppResponseItemModel } from './V0AppResponseItemModel';
 import {
     V0AppResponseItemModelFromJSON,
@@ -125,6 +132,12 @@ export interface V0PipelineListAllResponseItemModel {
     tag?: string;
     /**
      * 
+     * @type {V0PipelineListAllTriggerParams}
+     * @memberof V0PipelineListAllResponseItemModel
+     */
+    triggerParams?: V0PipelineListAllTriggerParams;
+    /**
+     * 
      * @type {string}
      * @memberof V0PipelineListAllResponseItemModel
      */
@@ -176,6 +189,7 @@ export function V0PipelineListAllResponseItemModelFromJSONTyped(json: any, ignor
         'startedAt': json['started_at'] == null ? undefined : json['started_at'],
         'status': json['status'] == null ? undefined : json['status'],
         'tag': json['tag'] == null ? undefined : json['tag'],
+        'triggerParams': json['trigger_params'] == null ? undefined : V0PipelineListAllTriggerParamsFromJSON(json['trigger_params']),
         'triggeredAt': json['triggered_at'] == null ? undefined : json['triggered_at'],
         'triggeredBy': json['triggered_by'] == null ? undefined : json['triggered_by'],
         'triggeredWorkflow': json['triggered_workflow'] == null ? undefined : json['triggered_workflow'],
@@ -209,6 +223,7 @@ export function V0PipelineListAllResponseItemModelToJSONTyped(value?: V0Pipeline
         'started_at': value['startedAt'],
         'status': value['status'],
         'tag': value['tag'],
+        'trigger_params': V0PipelineListAllTriggerParamsToJSON(value['triggerParams']),
         'triggered_at': value['triggeredAt'],
         'triggered_by': value['triggeredBy'],
         'triggered_workflow': value['triggeredWorkflow'],

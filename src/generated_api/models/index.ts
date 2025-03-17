@@ -121,6 +121,7 @@ export * from './V0PagingResponseModel';
 export * from './V0PipelineAbortParams';
 export * from './V0PipelineListAllResponseItemModel';
 export * from './V0PipelineListAllResponseModel';
+export * from './V0PipelineListAllTriggerParams';
 export * from './V0PipelineListResponseItemModel';
 export * from './V0PipelineListResponseModel';
 export * from './V0PipelineRebuildParams';

@@ -143,6 +143,7 @@ models/V0PagingResponseModel.ts
 models/V0PipelineAbortParams.ts
 models/V0PipelineListAllResponseItemModel.ts
 models/V0PipelineListAllResponseModel.ts
+models/V0PipelineListAllTriggerParams.ts
 models/V0PipelineListResponseItemModel.ts
 models/V0PipelineListResponseModel.ts
 models/V0PipelineRebuildParams.ts

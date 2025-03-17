@@ -53,6 +53,7 @@ export interface ArchivedBuildsListRequest {
     appSlug: string;
     after: number;
     before: number;
+    limit: number;
 }
 
 export interface BuildAbortRequest {
@@ -141,6 +142,13 @@ export class BuildsApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['limit'] == null) {
+            throw new runtime.RequiredError(
+                'limit',
+                'Required parameter "limit" was null or undefined when calling archivedBuildsList().'
+            );
+        }
+
         const queryParameters: any = {};
 
         if (requestParameters['after'] != null) {
@@ -149,6 +157,10 @@ export class BuildsApi extends runtime.BaseAPI {
 
         if (requestParameters['before'] != null) {
             queryParameters['before'] = requestParameters['before'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};

@@ -114,6 +114,12 @@ export interface V0BuildTriggerParamsBuildParams {
     pipelineId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof V0BuildTriggerParamsBuildParams
+     */
+    priority?: number;
+    /**
+     * 
      * @type {string}
      * @memberof V0BuildTriggerParamsBuildParams
      */
@@ -198,6 +204,7 @@ export function V0BuildTriggerParamsBuildParamsFromJSONTyped(json: any, ignoreDi
         'environments': json['environments'] == null ? undefined : ((json['environments'] as Array<any>).map(V0BuildParamsEnvironmentFromJSON)),
         'headRepositoryUrl': json['head_repository_url'] == null ? undefined : json['head_repository_url'],
         'pipelineId': json['pipeline_id'] == null ? undefined : json['pipeline_id'],
+        'priority': json['priority'] == null ? undefined : json['priority'],
         'pullRequestAuthor': json['pull_request_author'] == null ? undefined : json['pull_request_author'],
         'pullRequestHeadBranch': json['pull_request_head_branch'] == null ? undefined : json['pull_request_head_branch'],
         'pullRequestId': json['pull_request_id'] == null ? undefined : json['pull_request_id'],
@@ -234,6 +241,7 @@ export function V0BuildTriggerParamsBuildParamsToJSONTyped(value?: V0BuildTrigge
         'environments': value['environments'] == null ? undefined : ((value['environments'] as Array<any>).map(V0BuildParamsEnvironmentToJSON)),
         'head_repository_url': value['headRepositoryUrl'],
         'pipeline_id': value['pipelineId'],
+        'priority': value['priority'],
         'pull_request_author': value['pullRequestAuthor'],
         'pull_request_head_branch': value['pullRequestHeadBranch'],
         'pull_request_id': value['pullRequestId'],

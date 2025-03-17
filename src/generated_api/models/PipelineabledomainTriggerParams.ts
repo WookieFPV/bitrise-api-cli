@@ -77,6 +77,12 @@ export interface PipelineabledomainTriggerParams {
     machineTypeId?: string;
     /**
      * 
+     * @type {number}
+     * @memberof PipelineabledomainTriggerParams
+     */
+    priority?: number;
+    /**
+     * 
      * @type {string}
      * @memberof PipelineabledomainTriggerParams
      */
@@ -150,6 +156,7 @@ export function PipelineabledomainTriggerParamsFromJSONTyped(json: any, ignoreDi
         'commitMessage': json['commit_message'] == null ? undefined : json['commit_message'],
         'environments': json['environments'] == null ? undefined : ((json['environments'] as Array<any>).map(PipelineabledomainEnvironmentsFromJSON)),
         'machineTypeId': json['machine_type_id'] == null ? undefined : json['machine_type_id'],
+        'priority': json['priority'] == null ? undefined : json['priority'],
         'pullRequestAuthor': json['pull_request_author'] == null ? undefined : json['pull_request_author'],
         'pullRequestHeadBranch': json['pull_request_head_branch'] == null ? undefined : json['pull_request_head_branch'],
         'pullRequestId': json['pull_request_id'] == null ? undefined : json['pull_request_id'],
@@ -180,6 +187,7 @@ export function PipelineabledomainTriggerParamsToJSONTyped(value?: Pipelineabled
         'commit_message': value['commitMessage'],
         'environments': value['environments'] == null ? undefined : ((value['environments'] as Array<any>).map(PipelineabledomainEnvironmentsToJSON)),
         'machine_type_id': value['machineTypeId'],
+        'priority': value['priority'],
         'pull_request_author': value['pullRequestAuthor'],
         'pull_request_head_branch': value['pullRequestHeadBranch'],
         'pull_request_id': value['pullRequestId'],
