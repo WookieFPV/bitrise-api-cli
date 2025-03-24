@@ -16,14 +16,18 @@
 import * as runtime from '../runtime';
 import type {
   ServiceStandardErrorRespModel,
+  V0BuildCertificateDownloadResponseModel,
   V0BuildCertificateListResponseModel,
   V0BuildCertificateResponseModel,
   V0BuildCertificateUpdateParams,
   V0BuildCertificateUploadParams,
+  V0BuildCertificateUploadResponseModel,
 } from '../models/index';
 import {
     ServiceStandardErrorRespModelFromJSON,
     ServiceStandardErrorRespModelToJSON,
+    V0BuildCertificateDownloadResponseModelFromJSON,
+    V0BuildCertificateDownloadResponseModelToJSON,
     V0BuildCertificateListResponseModelFromJSON,
     V0BuildCertificateListResponseModelToJSON,
     V0BuildCertificateResponseModelFromJSON,
@@ -32,6 +36,8 @@ import {
     V0BuildCertificateUpdateParamsToJSON,
     V0BuildCertificateUploadParamsFromJSON,
     V0BuildCertificateUploadParamsToJSON,
+    V0BuildCertificateUploadResponseModelFromJSON,
+    V0BuildCertificateUploadResponseModelToJSON,
 } from '../models/index';
 
 export interface BuildCertificateConfirmRequest {
@@ -121,7 +127,7 @@ export class BuildCertificateApi extends runtime.BaseAPI {
      * Create a temporary pre-signed upload URL for the build certificate and upload the file to AWS with a simple `curl` request. To complete the uploading process and view your files on the Code Signing tab of your app, continue with the [POST /apps/{app-slug}/build-certificates/{build-certificate-slug}/uploaded](https://api-docs.bitrise.io/#/build-certificate/build-certificate-confirm) endpoint. Read more in our [Creating and uploading an iOS code signing file](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#creating--uploading-an-ios-code-signing-file) guide.
      * Create a build certificate
      */
-    async buildCertificateCreateRaw(requestParameters: BuildCertificateCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0BuildCertificateResponseModel>> {
+    async buildCertificateCreateRaw(requestParameters: BuildCertificateCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0BuildCertificateUploadResponseModel>> {
         if (requestParameters['appSlug'] == null) {
             throw new runtime.RequiredError(
                 'appSlug',
@@ -154,14 +160,14 @@ export class BuildCertificateApi extends runtime.BaseAPI {
             body: V0BuildCertificateUploadParamsToJSON(requestParameters['buildCertificate']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => V0BuildCertificateResponseModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0BuildCertificateUploadResponseModelFromJSON(jsonValue));
     }
 
     /**
      * Create a temporary pre-signed upload URL for the build certificate and upload the file to AWS with a simple `curl` request. To complete the uploading process and view your files on the Code Signing tab of your app, continue with the [POST /apps/{app-slug}/build-certificates/{build-certificate-slug}/uploaded](https://api-docs.bitrise.io/#/build-certificate/build-certificate-confirm) endpoint. Read more in our [Creating and uploading an iOS code signing file](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#creating--uploading-an-ios-code-signing-file) guide.
      * Create a build certificate
      */
-    async buildCertificateCreate(requestParameters: BuildCertificateCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0BuildCertificateResponseModel> {
+    async buildCertificateCreate(requestParameters: BuildCertificateCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0BuildCertificateUploadResponseModel> {
         const response = await this.buildCertificateCreateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,7 +273,7 @@ export class BuildCertificateApi extends runtime.BaseAPI {
      * Retrieve data of a specific build certificate. You can fetch the build certificate slug for this endpoint if you first call the [GET /apps/{app-slug}/build-certificates](https://api-docs.bitrise.io/#/build-certificate/build-certificate-list) endpoint to list all available build certificates of an app. Read more in our [Getting a specific iOS code signing file\'s data](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#getting-a-specific-ios-code-signing-files-data) guide.
      * Get a specific build certificate
      */
-    async buildCertificateShowRaw(requestParameters: BuildCertificateShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0BuildCertificateResponseModel>> {
+    async buildCertificateShowRaw(requestParameters: BuildCertificateShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0BuildCertificateDownloadResponseModel>> {
         if (requestParameters['appSlug'] == null) {
             throw new runtime.RequiredError(
                 'appSlug',
@@ -297,14 +303,14 @@ export class BuildCertificateApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => V0BuildCertificateResponseModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0BuildCertificateDownloadResponseModelFromJSON(jsonValue));
     }
 
     /**
      * Retrieve data of a specific build certificate. You can fetch the build certificate slug for this endpoint if you first call the [GET /apps/{app-slug}/build-certificates](https://api-docs.bitrise.io/#/build-certificate/build-certificate-list) endpoint to list all available build certificates of an app. Read more in our [Getting a specific iOS code signing file\'s data](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#getting-a-specific-ios-code-signing-files-data) guide.
      * Get a specific build certificate
      */
-    async buildCertificateShow(requestParameters: BuildCertificateShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0BuildCertificateResponseModel> {
+    async buildCertificateShow(requestParameters: BuildCertificateShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0BuildCertificateDownloadResponseModel> {
         const response = await this.buildCertificateShowRaw(requestParameters, initOverrides);
         return await response.value();
     }

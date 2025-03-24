@@ -614,6 +614,66 @@
       }
     },
     "/apps/{app-slug}/android-keystore-files/{android-keystore-file-slug}": {
+      "get": {
+        "security": [
+          {
+            "PersonalAccessToken": []
+          }
+        ],
+        "description": "Retrieve data of a specific Android Keystore file to check its attributes.",
+        "produces": ["application/json"],
+        "tags": ["android-keystore-file"],
+        "summary": "Get a specific Android Keystore file",
+        "operationId": "android-keystore-file-show",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "App slug",
+            "name": "app-slug",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Android Keystore file slug",
+            "name": "android-keystore-file-slug",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/v0.ProjectFileStorageDownloadResponseModel"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/service.StandardErrorRespModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/service.StandardErrorRespModel"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/service.StandardErrorRespModel"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/service.StandardErrorRespModel"
+            }
+          }
+        }
+      },
       "delete": {
         "security": [
           {
@@ -1216,7 +1276,7 @@
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/v0.BuildCertificateResponseModel"
+              "$ref": "#/definitions/v0.BuildCertificateUploadResponseModel"
             }
           },
           "400": {
@@ -1278,7 +1338,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/v0.BuildCertificateResponseModel"
+              "$ref": "#/definitions/v0.BuildCertificateDownloadResponseModel"
             }
           },
           "400": {
@@ -4050,7 +4110,7 @@
           "201": {
             "description": "Created",
             "schema": {
-              "$ref": "#/definitions/v0.ProvisionProfileResponseModel"
+              "$ref": "#/definitions/v0.ProvisionProfileUploadResponseModel"
             }
           },
           "400": {
@@ -4112,7 +4172,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/v0.ProvisionProfileResponseModel"
+              "$ref": "#/definitions/v0.ProvisionProfileDownloadResponseModel"
             }
           },
           "400": {
@@ -8266,26 +8326,7 @@
         }
       }
     },
-    "v0.BuildCertificateListResponseModel": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v0.BuildCertificateResponseItemModel"
-          }
-        },
-        "paging": {
-          "description": "pagination",
-          "allOf": [
-            {
-              "$ref": "#/definitions/v0.PagingResponseModel"
-            }
-          ]
-        }
-      }
-    },
-    "v0.BuildCertificateResponseItemModel": {
+    "v0.BuildCertificateDownloadResponseItemModel": {
       "type": "object",
       "properties": {
         "certificate_password": {
@@ -8311,9 +8352,59 @@
         },
         "upload_file_size": {
           "type": "integer"
+        }
+      }
+    },
+    "v0.BuildCertificateDownloadResponseModel": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v0.BuildCertificateDownloadResponseItemModel"
+        }
+      }
+    },
+    "v0.BuildCertificateListResponseModel": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v0.BuildCertificateResponseItemModel"
+          }
         },
-        "upload_url": {
+        "paging": {
+          "description": "pagination",
+          "allOf": [
+            {
+              "$ref": "#/definitions/v0.PagingResponseModel"
+            }
+          ]
+        }
+      }
+    },
+    "v0.BuildCertificateResponseItemModel": {
+      "type": "object",
+      "properties": {
+        "certificate_password": {
           "type": "string"
+        },
+        "is_expose": {
+          "type": "boolean"
+        },
+        "is_protected": {
+          "type": "boolean"
+        },
+        "processed": {
+          "type": "boolean"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "upload_file_name": {
+          "type": "string"
+        },
+        "upload_file_size": {
+          "type": "integer"
         }
       }
     },
@@ -8351,6 +8442,43 @@
         },
         "upload_file_size": {
           "type": "integer"
+        }
+      }
+    },
+    "v0.BuildCertificateUploadResponseItemModel": {
+      "type": "object",
+      "properties": {
+        "certificate_password": {
+          "type": "string"
+        },
+        "is_expose": {
+          "type": "boolean"
+        },
+        "is_protected": {
+          "type": "boolean"
+        },
+        "processed": {
+          "type": "boolean"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "upload_file_name": {
+          "type": "string"
+        },
+        "upload_file_size": {
+          "type": "integer"
+        },
+        "upload_url": {
+          "type": "string"
+        }
+      }
+    },
+    "v0.BuildCertificateUploadResponseModel": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v0.BuildCertificateUploadResponseItemModel"
         }
       }
     },
@@ -8855,6 +8983,9 @@
           "type": "string"
         },
         "last_used_at": {
+          "type": "string"
+        },
+        "storage_provider": {
           "type": "string"
         }
       }
@@ -9838,6 +9969,40 @@
         }
       }
     },
+    "v0.ProvisionProfileDownloadResponseItemModel": {
+      "type": "object",
+      "properties": {
+        "download_url": {
+          "type": "string"
+        },
+        "is_expose": {
+          "type": "boolean"
+        },
+        "is_protected": {
+          "type": "boolean"
+        },
+        "processed": {
+          "type": "boolean"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "upload_file_name": {
+          "type": "string"
+        },
+        "upload_file_size": {
+          "type": "integer"
+        }
+      }
+    },
+    "v0.ProvisionProfileDownloadResponseModel": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v0.ProvisionProfileDownloadResponseItemModel"
+        }
+      }
+    },
     "v0.ProvisionProfileListResponseModel": {
       "type": "object",
       "properties": {
@@ -9860,9 +10025,49 @@
     "v0.ProvisionProfileResponseItemModel": {
       "type": "object",
       "properties": {
-        "download_url": {
+        "is_expose": {
+          "type": "boolean"
+        },
+        "is_protected": {
+          "type": "boolean"
+        },
+        "processed": {
+          "type": "boolean"
+        },
+        "slug": {
           "type": "string"
         },
+        "upload_file_name": {
+          "type": "string"
+        },
+        "upload_file_size": {
+          "type": "integer"
+        }
+      }
+    },
+    "v0.ProvisionProfileResponseModel": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/v0.ProvisionProfileResponseItemModel"
+        }
+      }
+    },
+    "v0.ProvisionProfileUploadParams": {
+      "type": "object",
+      "required": ["upload_file_name", "upload_file_size"],
+      "properties": {
+        "upload_file_name": {
+          "type": "string"
+        },
+        "upload_file_size": {
+          "type": "integer"
+        }
+      }
+    },
+    "v0.ProvisionProfileUploadResponseItemModel": {
+      "type": "object",
+      "properties": {
         "is_expose": {
           "type": "boolean"
         },
@@ -9886,23 +10091,11 @@
         }
       }
     },
-    "v0.ProvisionProfileResponseModel": {
+    "v0.ProvisionProfileUploadResponseModel": {
       "type": "object",
       "properties": {
         "data": {
-          "$ref": "#/definitions/v0.ProvisionProfileResponseItemModel"
-        }
-      }
-    },
-    "v0.ProvisionProfileUploadParams": {
-      "type": "object",
-      "required": ["upload_file_name", "upload_file_size"],
-      "properties": {
-        "upload_file_name": {
-          "type": "string"
-        },
-        "upload_file_size": {
-          "type": "integer"
+          "$ref": "#/definitions/v0.ProvisionProfileUploadResponseItemModel"
         }
       }
     },

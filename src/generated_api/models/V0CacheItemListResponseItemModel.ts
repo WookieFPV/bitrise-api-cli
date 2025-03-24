@@ -67,6 +67,12 @@ export interface V0CacheItemListResponseItemModel {
      * @memberof V0CacheItemListResponseItemModel
      */
     lastUsedAt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof V0CacheItemListResponseItemModel
+     */
+    storageProvider?: string;
 }
 
 /**
@@ -94,6 +100,7 @@ export function V0CacheItemListResponseItemModelFromJSONTyped(json: any, ignoreD
         'expiresAt': json['expires_at'] == null ? undefined : json['expires_at'],
         'id': json['id'] == null ? undefined : json['id'],
         'lastUsedAt': json['last_used_at'] == null ? undefined : json['last_used_at'],
+        'storageProvider': json['storage_provider'] == null ? undefined : json['storage_provider'],
     };
 }
 
@@ -116,6 +123,7 @@ export function V0CacheItemListResponseItemModelToJSONTyped(value?: V0CacheItemL
         'expires_at': value['expiresAt'],
         'id': value['id'],
         'last_used_at': value['lastUsedAt'],
+        'storage_provider': value['storageProvider'],
     };
 }
 

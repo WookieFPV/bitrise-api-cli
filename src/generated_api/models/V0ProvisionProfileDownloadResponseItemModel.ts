@@ -16,64 +16,71 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface V0ProvisionProfileResponseItemModel
+ * @interface V0ProvisionProfileDownloadResponseItemModel
  */
-export interface V0ProvisionProfileResponseItemModel {
+export interface V0ProvisionProfileDownloadResponseItemModel {
+    /**
+     * 
+     * @type {string}
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
+     */
+    downloadUrl?: string;
     /**
      * 
      * @type {boolean}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
      */
     isExpose?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
      */
     isProtected?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
      */
     processed?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
      */
     slug?: string;
     /**
      * 
      * @type {string}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
      */
     uploadFileName?: string;
     /**
      * 
      * @type {number}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileDownloadResponseItemModel
      */
     uploadFileSize?: number;
 }
 
 /**
- * Check if a given object implements the V0ProvisionProfileResponseItemModel interface.
+ * Check if a given object implements the V0ProvisionProfileDownloadResponseItemModel interface.
  */
-export function instanceOfV0ProvisionProfileResponseItemModel(value: object): value is V0ProvisionProfileResponseItemModel {
+export function instanceOfV0ProvisionProfileDownloadResponseItemModel(value: object): value is V0ProvisionProfileDownloadResponseItemModel {
     return true;
 }
 
-export function V0ProvisionProfileResponseItemModelFromJSON(json: any): V0ProvisionProfileResponseItemModel {
-    return V0ProvisionProfileResponseItemModelFromJSONTyped(json, false);
+export function V0ProvisionProfileDownloadResponseItemModelFromJSON(json: any): V0ProvisionProfileDownloadResponseItemModel {
+    return V0ProvisionProfileDownloadResponseItemModelFromJSONTyped(json, false);
 }
 
-export function V0ProvisionProfileResponseItemModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): V0ProvisionProfileResponseItemModel {
+export function V0ProvisionProfileDownloadResponseItemModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): V0ProvisionProfileDownloadResponseItemModel {
     if (json == null) {
         return json;
     }
     return {
         
+        'downloadUrl': json['download_url'] == null ? undefined : json['download_url'],
         'isExpose': json['is_expose'] == null ? undefined : json['is_expose'],
         'isProtected': json['is_protected'] == null ? undefined : json['is_protected'],
         'processed': json['processed'] == null ? undefined : json['processed'],
@@ -83,17 +90,18 @@ export function V0ProvisionProfileResponseItemModelFromJSONTyped(json: any, igno
     };
 }
 
-export function V0ProvisionProfileResponseItemModelToJSON(json: any): V0ProvisionProfileResponseItemModel {
-    return V0ProvisionProfileResponseItemModelToJSONTyped(json, false);
+export function V0ProvisionProfileDownloadResponseItemModelToJSON(json: any): V0ProvisionProfileDownloadResponseItemModel {
+    return V0ProvisionProfileDownloadResponseItemModelToJSONTyped(json, false);
 }
 
-export function V0ProvisionProfileResponseItemModelToJSONTyped(value?: V0ProvisionProfileResponseItemModel | null, ignoreDiscriminator: boolean = false): any {
+export function V0ProvisionProfileDownloadResponseItemModelToJSONTyped(value?: V0ProvisionProfileDownloadResponseItemModel | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
 
     return {
         
+        'download_url': value['downloadUrl'],
         'is_expose': value['isExpose'],
         'is_protected': value['isProtected'],
         'processed': value['processed'],

@@ -16,71 +16,78 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface V0BuildCertificateResponseItemModel
+ * @interface V0BuildCertificateDownloadResponseItemModel
  */
-export interface V0BuildCertificateResponseItemModel {
+export interface V0BuildCertificateDownloadResponseItemModel {
     /**
      * 
      * @type {string}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     certificatePassword?: string;
     /**
      * 
+     * @type {string}
+     * @memberof V0BuildCertificateDownloadResponseItemModel
+     */
+    downloadUrl?: string;
+    /**
+     * 
      * @type {boolean}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     isExpose?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     isProtected?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     processed?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     slug?: string;
     /**
      * 
      * @type {string}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     uploadFileName?: string;
     /**
      * 
      * @type {number}
-     * @memberof V0BuildCertificateResponseItemModel
+     * @memberof V0BuildCertificateDownloadResponseItemModel
      */
     uploadFileSize?: number;
 }
 
 /**
- * Check if a given object implements the V0BuildCertificateResponseItemModel interface.
+ * Check if a given object implements the V0BuildCertificateDownloadResponseItemModel interface.
  */
-export function instanceOfV0BuildCertificateResponseItemModel(value: object): value is V0BuildCertificateResponseItemModel {
+export function instanceOfV0BuildCertificateDownloadResponseItemModel(value: object): value is V0BuildCertificateDownloadResponseItemModel {
     return true;
 }
 
-export function V0BuildCertificateResponseItemModelFromJSON(json: any): V0BuildCertificateResponseItemModel {
-    return V0BuildCertificateResponseItemModelFromJSONTyped(json, false);
+export function V0BuildCertificateDownloadResponseItemModelFromJSON(json: any): V0BuildCertificateDownloadResponseItemModel {
+    return V0BuildCertificateDownloadResponseItemModelFromJSONTyped(json, false);
 }
 
-export function V0BuildCertificateResponseItemModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): V0BuildCertificateResponseItemModel {
+export function V0BuildCertificateDownloadResponseItemModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): V0BuildCertificateDownloadResponseItemModel {
     if (json == null) {
         return json;
     }
     return {
         
         'certificatePassword': json['certificate_password'] == null ? undefined : json['certificate_password'],
+        'downloadUrl': json['download_url'] == null ? undefined : json['download_url'],
         'isExpose': json['is_expose'] == null ? undefined : json['is_expose'],
         'isProtected': json['is_protected'] == null ? undefined : json['is_protected'],
         'processed': json['processed'] == null ? undefined : json['processed'],
@@ -90,11 +97,11 @@ export function V0BuildCertificateResponseItemModelFromJSONTyped(json: any, igno
     };
 }
 
-export function V0BuildCertificateResponseItemModelToJSON(json: any): V0BuildCertificateResponseItemModel {
-    return V0BuildCertificateResponseItemModelToJSONTyped(json, false);
+export function V0BuildCertificateDownloadResponseItemModelToJSON(json: any): V0BuildCertificateDownloadResponseItemModel {
+    return V0BuildCertificateDownloadResponseItemModelToJSONTyped(json, false);
 }
 
-export function V0BuildCertificateResponseItemModelToJSONTyped(value?: V0BuildCertificateResponseItemModel | null, ignoreDiscriminator: boolean = false): any {
+export function V0BuildCertificateDownloadResponseItemModelToJSONTyped(value?: V0BuildCertificateDownloadResponseItemModel | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -102,6 +109,7 @@ export function V0BuildCertificateResponseItemModelToJSONTyped(value?: V0BuildCe
     return {
         
         'certificate_password': value['certificatePassword'],
+        'download_url': value['downloadUrl'],
         'is_expose': value['isExpose'],
         'is_protected': value['isProtected'],
         'processed': value['processed'],

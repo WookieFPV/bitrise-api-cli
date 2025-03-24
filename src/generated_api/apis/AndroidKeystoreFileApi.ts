@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   ServiceStandardErrorRespModel,
   V0AndroidKeystoreFileUploadParams,
+  V0ProjectFileStorageDownloadResponseModel,
   V0ProjectFileStorageListResponseModel,
   V0ProjectFileStorageResponseModel,
   V0ProjectFileStorageUploadResponseModel,
@@ -26,6 +27,8 @@ import {
     ServiceStandardErrorRespModelToJSON,
     V0AndroidKeystoreFileUploadParamsFromJSON,
     V0AndroidKeystoreFileUploadParamsToJSON,
+    V0ProjectFileStorageDownloadResponseModelFromJSON,
+    V0ProjectFileStorageDownloadResponseModelToJSON,
     V0ProjectFileStorageListResponseModelFromJSON,
     V0ProjectFileStorageListResponseModelToJSON,
     V0ProjectFileStorageResponseModelFromJSON,
@@ -53,6 +56,11 @@ export interface AndroidKeystoreFileListRequest {
     appSlug: string;
     next?: string;
     limit?: number;
+}
+
+export interface AndroidKeystoreFileShowRequest {
+    appSlug: string;
+    androidKeystoreFileSlug: string;
 }
 
 /**
@@ -249,6 +257,52 @@ export class AndroidKeystoreFileApi extends runtime.BaseAPI {
      */
     async androidKeystoreFileList(requestParameters: AndroidKeystoreFileListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0ProjectFileStorageListResponseModel> {
         const response = await this.androidKeystoreFileListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve data of a specific Android Keystore file to check its attributes.
+     * Get a specific Android Keystore file
+     */
+    async androidKeystoreFileShowRaw(requestParameters: AndroidKeystoreFileShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0ProjectFileStorageDownloadResponseModel>> {
+        if (requestParameters['appSlug'] == null) {
+            throw new runtime.RequiredError(
+                'appSlug',
+                'Required parameter "appSlug" was null or undefined when calling androidKeystoreFileShow().'
+            );
+        }
+
+        if (requestParameters['androidKeystoreFileSlug'] == null) {
+            throw new runtime.RequiredError(
+                'androidKeystoreFileSlug',
+                'Required parameter "androidKeystoreFileSlug" was null or undefined when calling androidKeystoreFileShow().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // PersonalAccessToken authentication
+        }
+
+        const response = await this.request({
+            path: `/apps/{app-slug}/android-keystore-files/{android-keystore-file-slug}`.replace(`{${"app-slug"}}`, encodeURIComponent(String(requestParameters['appSlug']))).replace(`{${"android-keystore-file-slug"}}`, encodeURIComponent(String(requestParameters['androidKeystoreFileSlug']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0ProjectFileStorageDownloadResponseModelFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve data of a specific Android Keystore file to check its attributes.
+     * Get a specific Android Keystore file
+     */
+    async androidKeystoreFileShow(requestParameters: AndroidKeystoreFileShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0ProjectFileStorageDownloadResponseModel> {
+        const response = await this.androidKeystoreFileShowRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

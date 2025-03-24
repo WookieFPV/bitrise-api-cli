@@ -17,21 +17,27 @@ import * as runtime from '../runtime';
 import type {
   ServiceStandardErrorRespModel,
   V0ProvProfileDocumentUpdateParams,
+  V0ProvisionProfileDownloadResponseModel,
   V0ProvisionProfileListResponseModel,
   V0ProvisionProfileResponseModel,
   V0ProvisionProfileUploadParams,
+  V0ProvisionProfileUploadResponseModel,
 } from '../models/index';
 import {
     ServiceStandardErrorRespModelFromJSON,
     ServiceStandardErrorRespModelToJSON,
     V0ProvProfileDocumentUpdateParamsFromJSON,
     V0ProvProfileDocumentUpdateParamsToJSON,
+    V0ProvisionProfileDownloadResponseModelFromJSON,
+    V0ProvisionProfileDownloadResponseModelToJSON,
     V0ProvisionProfileListResponseModelFromJSON,
     V0ProvisionProfileListResponseModelToJSON,
     V0ProvisionProfileResponseModelFromJSON,
     V0ProvisionProfileResponseModelToJSON,
     V0ProvisionProfileUploadParamsFromJSON,
     V0ProvisionProfileUploadParamsToJSON,
+    V0ProvisionProfileUploadResponseModelFromJSON,
+    V0ProvisionProfileUploadResponseModelToJSON,
 } from '../models/index';
 
 export interface ProvisioningProfileConfirmRequest {
@@ -121,7 +127,7 @@ export class ProvisioningProfileApi extends runtime.BaseAPI {
      * Create a temporary pre-signed upload URL (expires in 10 minutes) for the provisioning profile and upload it to AWS with a simple `curl` request. To complete the upload process, continue with the [POST /apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}/uploaded](https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-confirm) endpoint. Read more in our [Creating and uploading an iOS code signing file](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#creating--uploading-an-ios-code-signing-file) guide.
      * Create a provisioning profile
      */
-    async provisioningProfileCreateRaw(requestParameters: ProvisioningProfileCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0ProvisionProfileResponseModel>> {
+    async provisioningProfileCreateRaw(requestParameters: ProvisioningProfileCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0ProvisionProfileUploadResponseModel>> {
         if (requestParameters['appSlug'] == null) {
             throw new runtime.RequiredError(
                 'appSlug',
@@ -154,14 +160,14 @@ export class ProvisioningProfileApi extends runtime.BaseAPI {
             body: V0ProvisionProfileUploadParamsToJSON(requestParameters['provisioningProfile']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => V0ProvisionProfileResponseModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0ProvisionProfileUploadResponseModelFromJSON(jsonValue));
     }
 
     /**
      * Create a temporary pre-signed upload URL (expires in 10 minutes) for the provisioning profile and upload it to AWS with a simple `curl` request. To complete the upload process, continue with the [POST /apps/{app-slug}/provisioning-profiles/{provisioning-profile-slug}/uploaded](https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-confirm) endpoint. Read more in our [Creating and uploading an iOS code signing file](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#creating--uploading-an-ios-code-signing-file) guide.
      * Create a provisioning profile
      */
-    async provisioningProfileCreate(requestParameters: ProvisioningProfileCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0ProvisionProfileResponseModel> {
+    async provisioningProfileCreate(requestParameters: ProvisioningProfileCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0ProvisionProfileUploadResponseModel> {
         const response = await this.provisioningProfileCreateRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,7 +273,7 @@ export class ProvisioningProfileApi extends runtime.BaseAPI {
      * Retrieve data of a specific provisioning profile. You can fetch the provisioning profile\'s slug if you call the [GET /apps/{app-slug}/provisioning-profiles](https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-list) endpoint. Read more in our [Getting a specific iOS code signing file\'s data](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#getting-a-specific-ios-code-signing-files-data) guide.
      * Get a specific provisioning profile
      */
-    async provisioningProfileShowRaw(requestParameters: ProvisioningProfileShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0ProvisionProfileResponseModel>> {
+    async provisioningProfileShowRaw(requestParameters: ProvisioningProfileShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<V0ProvisionProfileDownloadResponseModel>> {
         if (requestParameters['appSlug'] == null) {
             throw new runtime.RequiredError(
                 'appSlug',
@@ -297,14 +303,14 @@ export class ProvisioningProfileApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => V0ProvisionProfileResponseModelFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => V0ProvisionProfileDownloadResponseModelFromJSON(jsonValue));
     }
 
     /**
      * Retrieve data of a specific provisioning profile. You can fetch the provisioning profile\'s slug if you call the [GET /apps/{app-slug}/provisioning-profiles](https://api-docs.bitrise.io/#/provisioning-profile/provisioning-profile-list) endpoint. Read more in our [Getting a specific iOS code signing file\'s data](https://devcenter.bitrise.io/api/managing-ios-code-signing-files/#getting-a-specific-ios-code-signing-files-data) guide.
      * Get a specific provisioning profile
      */
-    async provisioningProfileShow(requestParameters: ProvisioningProfileShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0ProvisionProfileResponseModel> {
+    async provisioningProfileShow(requestParameters: ProvisioningProfileShowRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<V0ProvisionProfileDownloadResponseModel> {
         const response = await this.provisioningProfileShowRaw(requestParameters, initOverrides);
         return await response.value();
     }

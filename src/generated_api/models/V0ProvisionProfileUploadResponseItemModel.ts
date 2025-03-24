@@ -16,59 +16,65 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface V0ProvisionProfileResponseItemModel
+ * @interface V0ProvisionProfileUploadResponseItemModel
  */
-export interface V0ProvisionProfileResponseItemModel {
+export interface V0ProvisionProfileUploadResponseItemModel {
     /**
      * 
      * @type {boolean}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileUploadResponseItemModel
      */
     isExpose?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileUploadResponseItemModel
      */
     isProtected?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileUploadResponseItemModel
      */
     processed?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileUploadResponseItemModel
      */
     slug?: string;
     /**
      * 
      * @type {string}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileUploadResponseItemModel
      */
     uploadFileName?: string;
     /**
      * 
      * @type {number}
-     * @memberof V0ProvisionProfileResponseItemModel
+     * @memberof V0ProvisionProfileUploadResponseItemModel
      */
     uploadFileSize?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof V0ProvisionProfileUploadResponseItemModel
+     */
+    uploadUrl?: string;
 }
 
 /**
- * Check if a given object implements the V0ProvisionProfileResponseItemModel interface.
+ * Check if a given object implements the V0ProvisionProfileUploadResponseItemModel interface.
  */
-export function instanceOfV0ProvisionProfileResponseItemModel(value: object): value is V0ProvisionProfileResponseItemModel {
+export function instanceOfV0ProvisionProfileUploadResponseItemModel(value: object): value is V0ProvisionProfileUploadResponseItemModel {
     return true;
 }
 
-export function V0ProvisionProfileResponseItemModelFromJSON(json: any): V0ProvisionProfileResponseItemModel {
-    return V0ProvisionProfileResponseItemModelFromJSONTyped(json, false);
+export function V0ProvisionProfileUploadResponseItemModelFromJSON(json: any): V0ProvisionProfileUploadResponseItemModel {
+    return V0ProvisionProfileUploadResponseItemModelFromJSONTyped(json, false);
 }
 
-export function V0ProvisionProfileResponseItemModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): V0ProvisionProfileResponseItemModel {
+export function V0ProvisionProfileUploadResponseItemModelFromJSONTyped(json: any, ignoreDiscriminator: boolean): V0ProvisionProfileUploadResponseItemModel {
     if (json == null) {
         return json;
     }
@@ -80,14 +86,15 @@ export function V0ProvisionProfileResponseItemModelFromJSONTyped(json: any, igno
         'slug': json['slug'] == null ? undefined : json['slug'],
         'uploadFileName': json['upload_file_name'] == null ? undefined : json['upload_file_name'],
         'uploadFileSize': json['upload_file_size'] == null ? undefined : json['upload_file_size'],
+        'uploadUrl': json['upload_url'] == null ? undefined : json['upload_url'],
     };
 }
 
-export function V0ProvisionProfileResponseItemModelToJSON(json: any): V0ProvisionProfileResponseItemModel {
-    return V0ProvisionProfileResponseItemModelToJSONTyped(json, false);
+export function V0ProvisionProfileUploadResponseItemModelToJSON(json: any): V0ProvisionProfileUploadResponseItemModel {
+    return V0ProvisionProfileUploadResponseItemModelToJSONTyped(json, false);
 }
 
-export function V0ProvisionProfileResponseItemModelToJSONTyped(value?: V0ProvisionProfileResponseItemModel | null, ignoreDiscriminator: boolean = false): any {
+export function V0ProvisionProfileUploadResponseItemModelToJSONTyped(value?: V0ProvisionProfileUploadResponseItemModel | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -100,6 +107,7 @@ export function V0ProvisionProfileResponseItemModelToJSONTyped(value?: V0Provisi
         'slug': value['slug'],
         'upload_file_name': value['uploadFileName'],
         'upload_file_size': value['uploadFileSize'],
+        'upload_url': value['uploadUrl'],
     };
 }
 
