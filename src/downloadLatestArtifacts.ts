@@ -1,12 +1,11 @@
 import { fetchArtifact } from "@/bitrise/fetchArtifact";
 import { fetchArtifactByType } from "@/bitrise/fetchArtifactList";
 import { getLatestBuild } from "@/bitrise/fetchBuilds";
-import { formatBytes } from "@/helper/formatBytes";
-import { oraPromise } from "ora";
-
 import type { CommandFlags } from "@/cli/commands/download/impl";
 import { downloadFile } from "@/helper/downloadFile";
+import { formatBytes } from "@/helper/formatBytes";
 import { getOraTexts } from "@/helper/oraHelper";
+import { oraPromise } from "ora";
 
 export const downloadLatestArtifacts = async (options: CommandFlags) => {
     const latestBuild = await oraPromise(getLatestBuild(), getOraTexts("fetching latest build"));
