@@ -39,7 +39,7 @@ export const downloadCommand = buildCommand({
             },
             install: {
                 kind: "boolean",
-                brief: "Install the downloaded artifact [android only]",
+                brief: "Install the downloaded apk/aab artifact [android only]",
                 default: false,
             },
         },

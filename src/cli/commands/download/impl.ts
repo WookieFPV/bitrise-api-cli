@@ -18,6 +18,6 @@ export default async function (this: LocalContext, flags: CommandFlags): Promise
 
     const file = await downloadLatestArtifacts(flags);
     if (flags.install) {
-        await installApp({ file, flags }).catch(() => {});
+        await installApp({ file, flags });
     }
 }

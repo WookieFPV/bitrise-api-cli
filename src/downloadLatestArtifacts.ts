@@ -21,9 +21,11 @@ export const downloadLatestArtifacts = async (options: CommandFlags) => {
         getOraTexts("fetching artifact metadata"),
     );
 
+    const fileType = artifact.title?.split(".").pop() ?? "unknown";
+
     const { file } = await oraPromise(downloadFile(artifact.expiringDownloadUrl, artifactMetadata.title), {
-        ...getOraTexts("downloading apk file"),
-        text: `downloading apk file [${formatBytes(artifact.fileSizeBytes ?? 0)}]`,
+        ...getOraTexts(`downloading ${fileType} file`),
+        text: `downloading ${fileType} file [${formatBytes(artifact.fileSizeBytes ?? 0)}]`,
     });
     return file;
 };

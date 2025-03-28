@@ -1,6 +1,6 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.8",
+  "version": "0.0.9-beta3",
   "description": "bitrise api CLI wrapper",
   "module": "index",
   "type": "module",
@@ -23,7 +23,7 @@
     "prepublishOnly": "bun i && bun run lint:CI && tsc  && bun run build"
   },
   "dependencies": {
-    "@stricli/core": "1.1.1",
+    "@stricli/core": "1.1.2",
     "ora": "8.2.0",
     "teen_process": "2.3.1"
   },
