@@ -25,13 +25,12 @@
   "dependencies": {
     "@stricli/core": "1.1.2",
     "ora": "8.2.0",
-    "teen_process": "2.3.1"
+    "zx": "8.5.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@openapitools/openapi-generator-cli": "2.18.4",
     "@types/bun": "latest",
-    "@types/teen_process": "^2.0.4",
     "tsup": "8.4.0",
     "typescript": "5.8.2"
   }
