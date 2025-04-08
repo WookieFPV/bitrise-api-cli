@@ -32,6 +32,6 @@
     "@openapitools/openapi-generator-cli": "2.18.4",
     "@types/bun": "latest",
     "tsup": "8.4.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   }
 }
