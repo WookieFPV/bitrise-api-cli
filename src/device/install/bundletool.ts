@@ -19,7 +19,7 @@ export const getOrInstallBundletool = async (): Promise<BundletoolType> => {
     const jarInfo = await getBundleToolJar();
     if (jarInfo) return jarInfo;
 
-    return oraPromise(installBundleTool(), getOraTexts("Downloading bundletool jar (if not installed)"));
+    return oraPromise(installBundleTool(), getOraTexts("Downloading bundletool"));
 };
 
 const bundletoolVersion = "1.18.1";
