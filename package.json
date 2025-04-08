@@ -1,6 +1,6 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "bitrise api CLI wrapper",
   "module": "index",
   "type": "module",
