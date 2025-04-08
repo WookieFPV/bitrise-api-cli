@@ -7,7 +7,7 @@ import { $ } from "zx";
 
 export const convertAabToApk = async (aabPath: string, flags: CommandFlags) => {
     const startTime = Date.now();
-    const tempDir = await createTempDir("bitrise-api-cli");
+    const tempDir = await createTempDir("bitrise-api-cli", "0");
     const fileName = path.basename(aabPath, ".aab");
     const outPath = path.join(tempDir, `${fileName}.apks`);
     const zipPath = path.join(tempDir, `${fileName}.zip`);
