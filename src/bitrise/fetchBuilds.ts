@@ -4,7 +4,7 @@ import { debugLog } from "@/helper/debugLog";
 import { ensureMandatoryFields } from "@/helper/ensureMandatoryFields";
 
 export const getAllBuilds = async () => {
-    const { data } = await api.builds().buildList({ appSlug: ENV.appSlug, status: 1 });
+    const { data } = await api.builds.buildList({ appSlug: ENV.appSlug, status: 1 });
     if (!data) throw Error("no build data");
     return data;
 };
