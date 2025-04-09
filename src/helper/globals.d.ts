@@ -1,3 +1,5 @@
+import "@total-typescript/ts-reset";
+
 declare namespace NodeJS {
     interface ProcessEnv {
         BITRISE_APP_SLUG: string | undefined;
