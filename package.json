@@ -25,7 +25,7 @@
   "dependencies": {
     "@stricli/core": "1.1.2",
     "ora": "8.2.0",
-    "zx": "8.5.0"
+    "zx": "8.5.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
