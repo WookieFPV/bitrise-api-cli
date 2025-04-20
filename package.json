@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@openapitools/openapi-generator-cli": "2.19.0",
+    "@openapitools/openapi-generator-cli": "2.19.1",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/bun": "latest",
     "tsup": "8.4.0",
