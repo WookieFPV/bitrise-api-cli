@@ -18,13 +18,25 @@ npx bitrise-api-cli@latest download --token <BITRISE_TOKEN> --workflow <WORKFLOW
 
 ## 🔐 Configuration
 
-### Environment Variables (instead of CLI flags)
+You can combine command-line flags, environment variables, and file-based configuration.
 
-| Variable                   | Description                          | Required     |
-| -------------------------- | ------------------------------------ | ------------ |
-| `BITRISE_API_CLI_TOKEN`    | Your Bitrise API token               | Yes          |
-| `BITRISE_API_CLI_WORKFLOW` | Workflow name for artifact downloads | Yes          |
-| `BITRISE_APP_SLUG`         | App Slug (auto-set in Bitrise CI)    | Locally only |
+### Environment Variables
+
+- `BITRISE_API_CLI_TOKEN`
+- `BITRISE_API_CLI_WORKFLOW`
+- `BITRISE_APP_SLUG` App Slug (auto-set in Bitrise CI)
+
+### File-Based Configuration
+
+The `.bitrise.json` file can be placed in your project root or home directory.
+
+```json
+{
+  "token": "your-bitrise-token",
+  "slug": "your-app-slug",
+  "workflow": "your-workflow-name"
+}
+```
 
 ## 💡 Examples
 

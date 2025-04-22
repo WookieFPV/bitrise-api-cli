@@ -1,4 +1,5 @@
 import { validArtifactTypes } from "@/cliOptions.types";
+import { readConfig } from "@/config/readConfig";
 import { buildCommand } from "@stricli/core";
 
 export const downloadCommand = buildCommand({
@@ -19,21 +20,21 @@ export const downloadCommand = buildCommand({
             slug: {
                 kind: "parsed",
                 brief: "bitrise app slug (or $BITRISE_APP_SLUG) see bitrise project url to get slug",
-                default: process.env["BITRISE_APP_SLUG"],
+                default: process.env["BITRISE_APP_SLUG"] ?? readConfig().slug,
                 parse: String,
                 placeholder: "APP_SLUG",
             },
             token: {
                 kind: "parsed",
                 brief: "bitrise api token (or $BITRISE_API_CLI_TOKEN)",
-                default: process.env["BITRISE_API_CLI_TOKEN"],
+                default: process.env["BITRISE_API_CLI_TOKEN"] ?? readConfig().token,
                 parse: String,
                 placeholder: "API_TOKEN",
             },
             workflow: {
                 kind: "parsed",
                 brief: "workflow to get apk from (or $BITRISE_API_CLI_WORKFLOW)",
-                default: process.env["BITRISE_API_CLI_WORKFLOW"],
+                default: process.env["BITRISE_API_CLI_WORKFLOW"] ?? readConfig().workflow,
                 parse: String,
                 placeholder: "WORKFLOW_NAME",
             },

@@ -1,6 +1,6 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "bitrise api CLI wrapper",
   "module": "index",
   "type": "module",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@stricli/core": "1.1.2",
+    "cosmiconfig": "9.0.0",
     "ora": "8.2.0",
     "zx": "8.5.3"
   },
