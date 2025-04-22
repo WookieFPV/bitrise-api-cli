@@ -5,8 +5,7 @@
   "module": "index",
   "type": "module",
   "bin": {
-    "bitrise-api-cli": "./dist/cli.js",
-    "__bitrise-api-cli_bash_complete": "dist/bash-complete.js"
+    "bitrise-api-cli": "./dist/cli.js"
   },
   "keywords": ["bitrise", "bitriseio", "apk", "downloader"],
   "license": "MIT",

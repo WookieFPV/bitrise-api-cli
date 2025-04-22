@@ -1,56 +1,36 @@
 import { ENV } from "@/bitrise/env";
-import {
-    ActivityApi,
-    AddonsApi,
-    AndroidKeystoreFileApi,
-    AppSetupApi,
-    AppleApiCredentialsApi,
-    ApplicationApi,
-    BuildArtifactApi,
-    BuildCertificateApi,
-    BuildRequestApi,
-    BuildsApi,
-    Configuration,
-    GenericProjectFileApi,
-    GoogleServiceCredentialsApi,
-    GroupsApi,
-    KeyValueCacheApi,
-    OrganizationsApi,
-    OutgoingWebhookApi,
-    PipelinesApi,
-    ProvisioningProfileApi,
-    SecretsApi,
-    TestDevicesApi,
-    UserApi,
-    WebhookDeliveryItemApi,
-} from "@/generated_api";
+import { Configuration } from "@/generated_api/runtime";
+
+import { BuildArtifactApi } from "@/generated_api/apis/BuildArtifactApi";
+import { BuildsApi } from "@/generated_api/apis/BuildsApi";
 
 export const apiConfig = new Configuration({ apiKey: () => ENV.token });
 
-/**
- * For each API, we create a new instance of the API class with the configuration. (This has some unnecessary overhead, but it is the simplest way to do it.)
- */
-export const api = {
-    activity: new ActivityApi(apiConfig),
-    appleApiCredentials: new AppleApiCredentialsApi(apiConfig),
-    buildRequest: new BuildRequestApi(apiConfig),
-    groups: new GroupsApi(apiConfig),
-    pipelines: new PipelinesApi(apiConfig),
-    user: new UserApi(apiConfig),
-    addons: new AddonsApi(apiConfig),
-    application: new ApplicationApi(apiConfig),
-    builds: new BuildsApi(apiConfig),
-    keyValueCache: new KeyValueCacheApi(apiConfig),
-    provisioningProfile: new ProvisioningProfileApi(apiConfig),
-    webhookDeliveryItem: new WebhookDeliveryItemApi(apiConfig),
-    androidKeystoreFile: new AndroidKeystoreFileApi(apiConfig),
-    buildArtifact: new BuildArtifactApi(apiConfig),
-    genericProjectFile: new GenericProjectFileApi(apiConfig),
-    organizations: new OrganizationsApi(apiConfig),
-    secrets: new SecretsApi(apiConfig),
-    appSetup: new AppSetupApi(apiConfig),
-    buildCertificate: new BuildCertificateApi(apiConfig),
-    googleServiceCredentials: new GoogleServiceCredentialsApi(apiConfig),
-    outgoingWebhook: new OutgoingWebhookApi(apiConfig),
-    testDevices: new TestDevicesApi(apiConfig),
-};
+export const apiBuildArtifact = new BuildArtifactApi(apiConfig);
+export const apiBuilds = new BuildsApi(apiConfig);
+
+/* Remove unused export to reduce bundle size:
+
+export const apiActivity = new ActivityApi(apiConfig)
+export const apiAppleApiCredentials = new AppleApiCredentialsApi(apiConfig)
+export const apiBuildRequest = new BuildRequestApi(apiConfig)
+export const apiGroups = new GroupsApi(apiConfig)
+export const apiPipelines = new PipelinesApi(apiConfig)
+export const apiUser = new UserApi(apiConfig)
+export const apiAddons = new AddonsApi(apiConfig)
+export const apiApplication = new ApplicationApi(apiConfig)
+
+export const apiKeyValueCache = new KeyValueCacheApi(apiConfig)
+export const apiProvisioningProfile = new ProvisioningProfileApi(apiConfig)
+export const apiWebhookDeliveryItem = new WebhookDeliveryItemApi(apiConfig)
+export const apiAndroidKeystoreFile = new AndroidKeystoreFileApi(apiConfig)
+
+export const apiGenericProjectFile = new GenericProjectFileApi(apiConfig)
+export const apiOrganizations = new OrganizationsApi(apiConfig)
+export const apiSecrets = new SecretsApi(apiConfig)
+export const apiAppSetup = new AppSetupApi(apiConfig)
+export const apiBuildCertificate = new BuildCertificateApi(apiConfig)
+export const apiGoogleServiceCredentials = new GoogleServiceCredentialsApi(apiConfig)
+export const apiOutgoingWebhook = new OutgoingWebhookApi(apiConfig)
+export const apiTestDevices = new TestDevicesApi(apiConfig)
+*/
