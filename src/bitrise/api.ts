@@ -1,13 +1,15 @@
 import { ENV } from "@/bitrise/env";
-import { Configuration } from "@/generated_api/runtime";
-
+import { Configuration } from "@/generated_api";
 import { BuildArtifactApi } from "@/generated_api/apis/BuildArtifactApi";
 import { BuildsApi } from "@/generated_api/apis/BuildsApi";
 
-export const apiConfig = new Configuration({ apiKey: () => ENV.token });
+const createApiConfig = (token: string) =>
+    new Configuration({
+        headers: { Authorization: token },
+    });
 
-export const apiBuildArtifact = new BuildArtifactApi(apiConfig);
-export const apiBuilds = new BuildsApi(apiConfig);
+export const apiBuildArtifact = () => new BuildArtifactApi(createApiConfig(ENV.token));
+export const apiBuilds = () => new BuildsApi(createApiConfig(ENV.token));
 
 /* Remove unused export to reduce bundle size:
 

@@ -4,7 +4,7 @@ import { ensureMandatoryFields } from "@/helper/ensureMandatoryFields";
 import { ENV } from "./env";
 
 export const fetchArtifactList = async (buildSlug: string) => {
-    const { data } = await apiBuildArtifact.artifactList({ appSlug: ENV.appSlug, buildSlug });
+    const { data } = await apiBuildArtifact().artifactList({ appSlug: ENV.appSlug, buildSlug });
     if (!data) throw new Error("buildArtifact().artifactList returned no data");
     return data;
 };

@@ -1,6 +1,6 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "bitrise api CLI wrapper",
   "module": "index",
   "type": "module",
@@ -32,6 +32,7 @@
     "@openapitools/openapi-generator-cli": "2.19.1",
     "@total-typescript/ts-reset": "0.6.1",
     "@types/bun": "latest",
+    "lefthook": "1.11.11",
     "tsup": "8.4.0",
     "typescript": "5.8.3"
   }
