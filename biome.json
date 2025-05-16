@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["dist", "src/generated_api"]
+    "ignore": ["dist", "src/generated_api", "package.json"]
   },
   "formatter": {
     "enabled": true,
