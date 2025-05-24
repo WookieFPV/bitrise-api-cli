@@ -33,7 +33,7 @@
     "@total-typescript/ts-reset": "0.6.1",
     "@types/bun": "latest",
     "lefthook": "1.11.13",
-    "tsup": "8.4.0",
+    "tsup": "8.5.0",
     "typescript": "5.8.3"
   }
 }
