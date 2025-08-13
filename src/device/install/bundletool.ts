@@ -1,10 +1,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { oraPromise } from "ora";
+import { $, which } from "zx";
 import { getOraTexts } from "@/helper/oraHelper";
 import { createTempDir } from "@/helper/tempDir";
 import { tryCatch } from "@/helper/tryCatch";
-import { oraPromise } from "ora";
-import { $, which } from "zx";
 
 type BundletoolType = { type: "jar" | "global"; path: string; duration?: number };
 
