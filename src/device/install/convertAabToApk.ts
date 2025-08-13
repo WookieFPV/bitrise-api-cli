@@ -1,9 +1,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { $ } from "zx";
 import type { CommandFlags } from "@/cli/commands/download/impl";
 import { getOrInstallBundletool } from "@/device/install/bundletool";
 import { createTempDir } from "@/helper/tempDir";
-import { $ } from "zx";
 
 export const convertAabToApk = async (aabPath: string, flags: CommandFlags) => {
     const startTime = Date.now();

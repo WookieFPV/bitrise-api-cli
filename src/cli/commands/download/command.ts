@@ -1,6 +1,6 @@
+import { buildCommand } from "@stricli/core";
 import { validArtifactTypes } from "@/cliOptions.types";
 import { readConfig } from "@/config/readConfig";
-import { buildCommand } from "@stricli/core";
 
 export const downloadCommand = buildCommand({
     loader: async () => import("./impl"),

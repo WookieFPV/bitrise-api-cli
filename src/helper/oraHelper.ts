@@ -1,6 +1,6 @@
+import type { PromiseOptions } from "ora";
 import { formatTime } from "@/helper/formatTime";
 import { isFetchError } from "@/helper/typeHelper";
-import type { PromiseOptions } from "ora";
 
 export const getOraTexts = (label: string): PromiseOptions<unknown> => ({
     text: label,

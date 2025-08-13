@@ -1,5 +1,5 @@
-import { downloadCommand } from "@/cli/commands/download/command";
 import { buildApplication, buildRouteMap } from "@stricli/core";
+import { downloadCommand } from "@/cli/commands/download/command";
 import { description, name, version } from "../../package.json";
 
 const root = buildRouteMap({

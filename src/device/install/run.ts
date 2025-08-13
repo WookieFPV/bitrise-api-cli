@@ -1,8 +1,8 @@
+import { oraPromise } from "ora";
 import type { CommandFlags } from "@/cli/commands/download/impl";
 import { installApk, installSplitApk } from "@/device/install/android";
 import { convertAabToApk } from "@/device/install/convertAabToApk";
 import { getOraTexts } from "@/helper/oraHelper";
-import { oraPromise } from "ora";
 
 export const installApp = async ({ file, flags }: { file: string; flags: CommandFlags }) => {
     if (flags.artifact === "android-apk" && file.endsWith(".aab")) {

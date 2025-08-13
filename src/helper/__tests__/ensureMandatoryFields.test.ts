@@ -18,7 +18,7 @@ describe("ensureMandatoryFields", () => {
         expect(result).toEqual(input);
 
         // expect result to have a stricter type
-        const expectCorrectType: withRequiredB = result;
+        const _expectCorrectType: withRequiredB = result;
 
         // expect result.b to be a number:
         const shouldBeNumber: number = result.b;
