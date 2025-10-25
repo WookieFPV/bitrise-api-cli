@@ -7,7 +7,7 @@
         "@stricli/core": "1.2.4",
         "cosmiconfig": "9.0.0",
         "ora": "8.2.0",
-        "zx": "8.8.4",
+        "zx": "8.8.5",
       },
       "devDependencies": {
         "@biomejs/biome": "1.9.4",
@@ -619,7 +619,7 @@
 
     "yargs-parser": ["yargs-parser@21.1.1", "", {}, "sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw=="],
 
-    "zx": ["zx@8.8.4", "", { "bin": { "zx": "build/cli.js" } }, "sha512-44GcD+ZlM/v1OQtbwnSxLPcoE1ZEUICmR+RSbJZLAqfIixNLuMjLyh0DcS75OyfJ/sWYAwCWDmDvJ4hdnANAPQ=="],
+    "zx": ["zx@8.8.5", "", { "bin": { "zx": "build/cli.js" } }, "sha512-SNgDF5L0gfN7FwVOdEFguY3orU5AkfFZm9B5YSHog/UDHv+lvmd82ZAsOenOkQixigwH2+yyH198AwNdKhj+RA=="],
 
     "@isaacs/cliui/string-width": ["string-width@5.1.2", "", { "dependencies": { "eastasianwidth": "^0.2.0", "emoji-regex": "^9.2.2", "strip-ansi": "^7.0.1" } }, "sha512-HnLOCR3vjcY8beoNLtcjZ5/nxn2afmME6lhrDrebokqMap+XbeW8n9TXpPDOqdGK5qcI3oT0GKTW6wC7EMiVqA=="],
 

@@ -25,7 +25,7 @@
     "@stricli/core": "1.2.4",
     "cosmiconfig": "9.0.0",
     "ora": "8.2.0",
-    "zx": "8.8.4"
+    "zx": "8.8.5"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
