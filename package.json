@@ -1,16 +1,23 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "bitrise api CLI wrapper",
   "module": "index",
   "type": "module",
   "bin": {
     "bitrise-api-cli": "./dist/cli.js"
   },
-  "keywords": ["bitrise", "bitriseio", "apk", "downloader"],
+  "keywords": [
+    "bitrise",
+    "bitriseio",
+    "apk",
+    "downloader"
+  ],
   "license": "MIT",
   "main": "dist/cli.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "build:dev": "tsup --watch --clean false",
