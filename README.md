@@ -1,34 +1,47 @@
-# Bitrise API CLI [![npm][npm-image]][npm-url] ![npm][npm-dl-stats]
+# bitrise-api-cli [![npm][npm-image]][npm-url] ![npm][npm-dl-stats]
 
-🚀 An unofficial CLI tool for Bitrise API artifact downloads.
+Download the latest Bitrise build artifact for a workflow without clicking through the UI.
 
-## 🎯 Features
+`bitrise-api-cli` is an unofficial Bitrise CLI focused on one job: find the latest successful build for a workflow, pick the matching artifact, and download it locally.
 
-- Download artifacts from successful builds
-- Workflow-based retrieval
-- CI/CD integration
-
-## 🚀 Quick Start
-
-### Download Artifacts
+## Quick Start
 
 ```bash
-npx bitrise-api-cli@latest download --token <BITRISE_TOKEN> --workflow <WORKFLOW_NAME> [--slug <APP_SLUG>]
+npx bitrise-api-cli@latest download \
+  --token <BITRISE_TOKEN> \
+  --workflow <WORKFLOW_NAME> \
+  --slug <APP_SLUG>
 ```
 
-## 🔐 Configuration
+## What It Can Download
 
-You can combine command-line flags, environment variables, and file-based configuration.
+- `android-apk` artifacts (default)
+- `ios-ipa` artifacts
+
+For Android artifacts you can also install the downloaded file immediately:
+
+```bash
+npx bitrise-api-cli@latest download \
+  --artifact android-apk \
+  --install \
+  --token <BITRISE_TOKEN> \
+  --workflow android-release \
+  --slug <APP_SLUG>
+```
+
+## Configuration
+
+You can combine command flags, environment variables, and `.bitrise.json`.
 
 ### Environment Variables
 
 - `BITRISE_API_CLI_TOKEN`
 - `BITRISE_API_CLI_WORKFLOW`
-- `BITRISE_APP_SLUG` App Slug (auto-set in Bitrise CI)
+- `BITRISE_APP_SLUG`
 
-### File-Based Configuration
+`BITRISE_APP_SLUG` is usually available automatically in Bitrise CI.
 
-The `.bitrise.json` file can be placed in your project root or home directory.
+### `.bitrise.json`
 
 ```json
 {
@@ -38,37 +51,26 @@ The `.bitrise.json` file can be placed in your project root or home directory.
 }
 ```
 
-## 💡 Examples
+## Main Flags
 
-### Command Line
+- `--token <token>`: Bitrise API token
+- `--workflow <name>`: workflow whose latest successful build should be used
+- `--slug <app-slug>`: Bitrise app slug
+- `--artifact <android-apk|ios-ipa>`: artifact type to download
+- `--install`: install the downloaded Android artifact locally
+- `--debug`: print extra request and resolution details
 
-```bash
-npx bitrise-api-cli@latest download --token abc123 --workflow android-release --slug a1b2c3d4e5f6
-```
-
-### CI/CD Integration
-
-Integrate this CLI tool using the "Script" Step to download artifacts from previous builds, eliminating the need to rebuild from source.
+## CI Example
 
 ```yaml
 steps:
   - script:
       inputs:
         content: |
-          npx bitrise-api-cli download \
+          npx bitrise-api-cli@latest download \
             --workflow android-release \
-            --token $BITRISE_API_TOKEN
+            --token "$BITRISE_API_CLI_TOKEN"
 ```
-
-## 📝 License
-
-This project is [MIT](LICENSE) licensed.
-
----
-
-<div align="center">
-<p>Found this project useful? Give it a ⭐️!</p>
-</div>
 
 [npm-image]: https://img.shields.io/npm/v/bitrise-api-cli
 [npm-url]: https://www.npmjs.com/package/bitrise-api-cli
