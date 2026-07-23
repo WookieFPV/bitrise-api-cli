@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/WookieFPV/bitrise-api-cli/compare/v0.1.0...v0.1.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* correct repository URL to match actual GitHub repo ([029b72c](https://github.com/WookieFPV/bitrise-api-cli/commit/029b72c54a375215ab498bf8d8fc9a2ba3be24ce))
+
 ## [0.1.0](https://github.com/WookieFPV/bitrise-api-cli/compare/v0.0.8...v0.1.0) (2026-07-23)
 
 
