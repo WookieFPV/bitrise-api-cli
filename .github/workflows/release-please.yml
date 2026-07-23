@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - "**"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Force the npm publish step to run (e.g. to retry a publish that failed after the release was already created)"
+        type: boolean
+        default: false
 
 jobs:
   release-please:
@@ -54,12 +60,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created || inputs.publish }}
 
       - name: Update npm
         run: npm install -g npm@latest
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created || inputs.publish }}
 
       - name: Publish to npm
         run: npm publish --access public
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created || inputs.publish }}
