@@ -1,6 +1,6 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Download the latest Bitrise build artifacts for a workflow from the command line.",
   "module": "index",
   "type": "module",
