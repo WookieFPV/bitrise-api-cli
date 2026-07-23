@@ -9,6 +9,9 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
     env:
       NODE_ENV: production
       CI: true
@@ -44,8 +47,19 @@ jobs:
 
       - run: bunx pkg-pr-new publish --bin --binaryApplication
 
+      # bun publish doesn't yet support npm's OIDC trusted publishing
+      # (https://github.com/oven-sh/bun/issues/24855), so the actual
+      # publish step uses the real npm CLI, which needs to be >=11.5.1.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+        if: ${{ steps.release.outputs.release_created }}
+
+      - name: Update npm
+        run: npm install -g npm@latest
+        if: ${{ steps.release.outputs.release_created }}
+
       - name: Publish to npm
-        run: bun publish --access public
-        env:
-          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
         if: ${{ steps.release.outputs.release_created }}
