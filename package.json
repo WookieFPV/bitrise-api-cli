@@ -1,13 +1,22 @@
 {
   "name": "bitrise-api-cli",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "Download the latest Bitrise build artifacts for a workflow from the command line.",
   "module": "index",
   "type": "module",
   "bin": {
     "bitrise-api-cli": "./dist/cli.js"
   },
-  "keywords": ["bitrise", "bitriseio", "ci", "artifacts", "apk", "ipa", "download", "cli"],
+  "keywords": [
+    "bitrise",
+    "bitriseio",
+    "ci",
+    "artifacts",
+    "apk",
+    "ipa",
+    "download",
+    "cli"
+  ],
   "author": {
     "name": "WookieFPV (Lukas Müller)",
     "url": "https://github.com/WookieFPV"
@@ -22,7 +31,9 @@
   "bugs": {
     "url": "https://github.com/WookieFPV/bitrise_api_cli/issues"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "build:dev": "tsup --watch --clean false",
