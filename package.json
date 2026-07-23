@@ -5,7 +5,7 @@
   "module": "index",
   "type": "module",
   "bin": {
-    "bitrise-api-cli": "./dist/cli.js"
+    "bitrise-api-cli": "dist/cli.js"
   },
   "keywords": [
     "bitrise",
@@ -25,11 +25,11 @@
   "main": "dist/cli.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WookieFPV/bitrise_api_cli.git"
+    "url": "git+https://github.com/WookieFPV/bitrise-api-cli.git"
   },
-  "homepage": "https://github.com/WookieFPV/bitrise_api_cli#readme",
+  "homepage": "https://github.com/WookieFPV/bitrise-api-cli#readme",
   "bugs": {
-    "url": "https://github.com/WookieFPV/bitrise_api_cli/issues"
+    "url": "https://github.com/WookieFPV/bitrise-api-cli/issues"
   },
   "files": [
     "dist"
