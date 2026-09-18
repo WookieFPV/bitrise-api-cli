@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/WookieFPV/bitrise-api-cli/compare/v0.1.1...v0.1.2) (2026-09-18)
+
+
+### Bug Fixes
+
+* bump js-yaml override to 4.3.2 to resolve high-severity DoS advisory ([75f345a](https://github.com/WookieFPV/bitrise-api-cli/commit/75f345a56c587016eba61f95880570ed5c7ddd7d))
+
 ## [0.1.1](https://github.com/WookieFPV/bitrise-api-cli/compare/v0.1.0...v0.1.1) (2026-07-23)
 
 
