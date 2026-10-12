@@ -1,5 +1,7 @@
 # bitrise-api-cli [![npm][npm-image]][npm-url] ![npm][npm-dl-stats]
 
+> **This project is no longer maintained and the repository is archived.** It will not receive updates or bug fixes. Feel free to fork it if you want to continue development.
+
 Download the latest Bitrise build artifact for a workflow without clicking through the UI.
 
 `bitrise-api-cli` is an unofficial Bitrise CLI focused on one job: find the latest successful build for a workflow, pick the matching artifact, and download it locally.
